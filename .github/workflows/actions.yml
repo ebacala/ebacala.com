@@ -49,6 +49,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
         run: |
-          docker build . --file Dockerfile --tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ github.event.repository.name }}:latest
+          docker build . --tag ${{ github.event.repository.name }}:${{ github.sha }} --tag ${{ github.event.repository.name }}:latest
           docker push ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{ github.sha }}
         
