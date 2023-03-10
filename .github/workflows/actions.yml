@@ -50,5 +50,5 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build . --tag ${{ github.event.repository.name }}:${{ github.sha }} --tag ${{ github.event.repository.name }}:latest
-          docker push ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{ github.sha }}
+          docker push ${{ github.event.repository.name }}:${{ github.sha }}
         
