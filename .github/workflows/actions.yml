@@ -15,6 +15,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
+  USERNAME: ebacala
 
 jobs:
   Build-and-deploy:
@@ -50,5 +51,6 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build . --tag ${{ github.event.repository.name }}:${{ github.sha }} --tag ${{ github.event.repository.name }}:latest
+          docker tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}
           docker push ${{ github.event.repository.name }}:${{ github.sha }}
         
