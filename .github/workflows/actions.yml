@@ -13,15 +13,24 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Install SSH Key
+        run: |
+          command -v ssh-agent >/dev/null || ( apt-get install -y openssh )
+          eval $(ssh-agent -s)
+          echo "${{ secrets.SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan "${{ secrets.SSH_HOST}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+      - name: ZeroTier connection
+        uses: zerotier/github-action@v1
+        with:
+          network_id: "{{ secrets.ZEROTIER_NETWORK_ID}}"
+          auth_token: "{{ secrets.ZEROTIER_AUTH_TOKEN}}"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node
@@ -32,3 +41,6 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn generate
+      - name: Deploy
+        run: |
+          rsync -avz .output/public/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/tmp/public/
