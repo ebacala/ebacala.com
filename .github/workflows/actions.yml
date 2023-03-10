@@ -51,6 +51,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.0.0
         with:
-          tags: ${{ github.sha }} latest
+          tags: ${{ github.event.repository.name }}:${{ github.sha }}, ${{ github.event.repository.name }}:latest
           push: true
         
