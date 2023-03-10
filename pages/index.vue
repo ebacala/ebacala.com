@@ -4,7 +4,7 @@
   </div>
   <div class="personal-information">
     <h1>Hi, I'm Evann</h1>
-    <h2>Welcome to my personal website/portfolio!</h2>
+    <h2>Welcome to my personal website!</h2>
   </div>
 </template>
 
