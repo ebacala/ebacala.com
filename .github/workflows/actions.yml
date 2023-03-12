@@ -64,3 +64,13 @@ jobs:
 
       - name: Deploy
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "bash /home/ebacala/workspace/ebacala.com/deploy.sh"
+
+      - name: Notification
+        uses: umahmood/pushover-actions@main
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER_TOKEN }}
+        with:
+          status: ${{ job.status }}
+          title: ${{ env.IMAGE_NAME }}
+          message: Actions finished with status ${{ job.status }}
