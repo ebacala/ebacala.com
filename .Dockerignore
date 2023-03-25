@@ -5,3 +5,5 @@ dist
 .gitignore
 .npmrc
 README.md
+.prettierrc.json
+.vscode

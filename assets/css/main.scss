@@ -14,11 +14,86 @@
   src: url('~/assets/fonts/Montserrat-Medium.ttf') format('truetype');
 }
 
-html {
+html, body {
   background: url("~/assets/img/background.svg");
   /* background by SVGBackgrounds.com */
 
-  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  font-size : clamp(1rem, 5vmin, 1.25rem);
+
+  min-height: 100vh;
+
+  -webkit-scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
   width: 100vw;
 }
 
+.debug {
+  outline: 1px solid red;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.align-left {
+  align-items: left;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-right {
+  align-items: right;
+}
+
+.justify-left {
+  justify-content: left;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.my-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-80 {
+  width: 80vw;
+}
