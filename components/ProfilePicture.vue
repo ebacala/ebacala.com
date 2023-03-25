@@ -35,7 +35,7 @@
 .profile-picture {
     $size: min(40vmin, 300px);
 
-    animation: animation-picture 1s linear 0s 1 normal both;
+    animation: animation-picture 1s linear 2s 1 normal both;
     perspective: 4000px;
 
     height: $size;
@@ -51,14 +51,14 @@ h1 {
 }
 
 h2 {
-  animation: animation 1s linear 0s 1 normal backwards;
+  animation: animation 1s linear 1s 1 normal backwards;
   font-size : clamp(60px, 8vw, 140px);
   font-weight: 500;
   margin: clamp(10px, 2vw, 20px) auto;
 }
 
 .job {
-  animation: animation 1s linear 0s 1 normal both;
+  animation: animation 1s linear 2s 1 normal both;
   perspective: 4000px;
 
   border-radius: 10px;
