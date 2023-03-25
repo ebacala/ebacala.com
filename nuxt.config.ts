@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 				},
 				{ rel: "manifest", href: "/favicon/site.webmanifest" },
 			],
+			meta: [{ name: "theme-color", content: "#00A2FF" }],
 		},
 	},
 });

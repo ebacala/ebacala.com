@@ -20,15 +20,15 @@ html, body {
 
   font-family: "Montserrat", sans-serif;
   font-size : clamp(1rem, 5vmin, 1.25rem);
-
   min-height: 100vh;
-
-  -webkit-scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-  -ms-scroll-snap-type: y mandatory;
-  scroll-snap-type: y mandatory;
-  scroll-snap-stop: always;
   width: 100vw;
+}
+
+// Used to delay animations until the page is loaded
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important;
 }
 
 .debug {
@@ -47,6 +47,10 @@ html, body {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
 }
 
 .flex-nowrap {

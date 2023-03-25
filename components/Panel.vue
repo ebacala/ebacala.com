@@ -9,7 +9,6 @@
   min-height: 100vh;
   overflow: hidden;
   position: relative;
-  scroll-snap-align: start;
   width: 100vw;
 }
 </style>
