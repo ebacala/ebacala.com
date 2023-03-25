@@ -7,7 +7,6 @@
         <div class="job">Developer</div>
       </div>
       <img class="profile-picture" src="~/assets/img/profile-picture.webp" alt="Profile Picture" />
-      
     </div>
   </Panel>
 </template>

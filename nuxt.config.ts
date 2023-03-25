@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 	css: ["@/assets/css/reset.min.css", "@/assets/css/main.scss"],
 	app: {
 		head: {
+			htmlAttrs: { lang: "en" },
 			link: [
 				{ rel: "icon", type: "image/png", href: "/favicon/favicon.ico" },
 				{
@@ -28,7 +29,11 @@ export default defineNuxtConfig({
 				},
 				{ rel: "manifest", href: "/favicon/site.webmanifest" },
 			],
-			meta: [{ name: "theme-color", content: "#00A2FF" }],
+			meta: [
+				{ name: "theme-color", content: "#00A2FF" },
+				{ name: "description", content: "Evann BACALA website & portfolio" },
+			],
+			title: "Evann BACALA",
 		},
 	},
 });
