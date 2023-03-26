@@ -1,7 +1,7 @@
 <template>
-  <div class="panel flex-row align-center justify-center">
+  <section class="panel flex-column align-center justify-center">
     <slot/>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>

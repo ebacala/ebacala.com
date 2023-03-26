@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Barlow Condensed';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-display: swap;
   src: url('~/assets/fonts/BarlowCondensed-Medium.ttf') format('truetype');
 }
@@ -22,13 +22,6 @@ html, body {
   font-size : clamp(1rem, 5vmin, 1.25rem);
   min-height: 100vh;
   width: 100vw;
-}
-
-// Used to delay animations until the page is loaded
-.js-loading *,
-.js-loading *:before,
-.js-loading *:after {
-  animation-play-state: paused !important;
 }
 
 .debug {
@@ -100,4 +93,8 @@ html, body {
 
 .w-80 {
   width: 80vw;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
 }
