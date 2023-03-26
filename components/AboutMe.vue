@@ -3,7 +3,7 @@
     <div id="about-me" class="border-radius-10 flex-column align-center justify-space-around">
         <h1>About me</h1>
         <div class="content">
-          <p>I began my tech journey in 2016 when I enrolled in a 2-year computer science curriculum. Having lightly tinkered with code (some HTML/CSS and Java) at the end of my middle school education, 
+          <p>My name is Evann BACALA and I am a {{ age }} years old french software engineer. I began my tech journey in 2016 when I enrolled in a 2-year computer science curriculum. Having lightly tinkered with code (some HTML/CSS and Java) at the end of my middle school education, 
             I knew I was made for computer science.
           </p>
           <p>I then enrolled in a 3-year work-school program where I would be spending 2 weeks learning at school and 2 weeks working on real life projects in a company.</p>
@@ -30,6 +30,8 @@ const logos: Logo[] = [
   { name: 'Java', path: '/img/logos/java.webp' },
   { name: 'Spring', path: '/img/logos/spring.webp' }
 ]
+
+const age = Math.abs(new Date(Date.now() - new Date('1998-08-18').getTime()).getUTCFullYear() - 1970);
 
 onMounted(() => {
   createObserver(document.getElementById('about-me'), "animate-about-me");
