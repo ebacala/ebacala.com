@@ -1,5 +1,5 @@
 export const createObserver = (
-	htmlElement: HTMLElement,
+	htmlElement: HTMLElement | null,
 	animationClassName: string,
 ) => {
 	const observer = new IntersectionObserver(

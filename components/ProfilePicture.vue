@@ -6,12 +6,12 @@
         <h2 id="h2">Evann</h2>
         <div id="job" class="border-radius-10 job">Developer</div>
       </div>
-      <img id="profile-picture" class="profile-picture" src="~/assets/img/profile-picture.webp" alt="Profile Picture" />
+      <img id="profile-picture" class="profile-picture" src="/img/profile-picture.webp" alt="Profile Picture" />
     </div>
   </Panel>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from 'vue'
 import { createObserver } from '@/services/animation'
 

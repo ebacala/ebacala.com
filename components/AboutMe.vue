@@ -1,7 +1,7 @@
 <template>
   <Panel>
     <div id="about-me" class="border-radius-10 flex-column align-center justify-space-around">
-        <h1>About Me</h1>
+        <h1>About me</h1>
         <div class="content">
           <p>I began my tech journey in 2016 when I enrolled in a 2-year computer science curriculum. Having lightly tinkered with code (some HTML/CSS and Java) at the end of my middle school education, 
             I knew I was made for computer science.
@@ -11,16 +11,29 @@
           <p>Always focusing on delivering high-quality results, I am excited to bring my skills and experience onto the next project.</p>
         </div>
     </div>
+    <div id="technologies" class="flex-row align-center justify-center w-80 flex-wrap">
+      <img v-for="logo in logos" class="logo" :src="logo.path" :alt="logo.name"/>
+    </div>
   </Panel>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from 'vue'
 import { createObserver } from '@/services/animation'
+import { Logo } from '~/types/types';
+
+const logos: Logo[] = [
+  { name: 'Javascript', path: '/img/logos/js.webp' },
+  { name: 'Typescript', path: '/img/logos/ts.webp' },
+  { name: 'NodeJS', path: '/img/logos/nodejs.webp' },
+  { name: 'Vue', path: '/img/logos/vue.webp' },
+  { name: 'Java', path: '/img/logos/java.webp' },
+  { name: 'Spring', path: '/img/logos/spring.webp' }
+]
 
 onMounted(() => {
   createObserver(document.getElementById('about-me'), "animate-about-me");
-  // createObserver(document.getElementById('technologies'), "animate-technologies");
+  createObserver(document.getElementById('technologies'), "animate-technologies");
 })
 </script>
 
@@ -70,5 +83,19 @@ p {
   font-weight: 300;
   line-height: min(30px, 5vmin);
   margin: clamp(20px, 4vw, 40px) auto;
+}
+
+.logo {
+  $size: clamp(32px, 10vw, 64px);
+
+  filter: grayscale(1);
+  height: $size;
+  margin: calc($size / 4);
+  object-fit: contain;
+  width: $size;
+}
+
+.logo:hover {
+  filter: grayscale(0);
 }
 </style>
