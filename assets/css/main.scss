@@ -28,6 +28,10 @@ html, body {
   outline: 1px solid red;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;

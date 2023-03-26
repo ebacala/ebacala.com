@@ -20,7 +20,7 @@ import { createObserver } from '@/services/animation'
 
 onMounted(() => {
   createObserver(document.getElementById('about-me'), "animate-about-me");
-  createObserver(document.getElementById('technologies'), "animate-technologies");
+  // createObserver(document.getElementById('technologies'), "animate-technologies");
 })
 </script>
 
@@ -38,6 +38,15 @@ onMounted(() => {
   animation: animation-about-me 1s linear 0s 1 normal both;
 }
 
+#about-me {
+  background-color: white;
+  border: 1px solid lightgrey;
+  height: 70vh;
+  padding: clamp(20px, 4vw, 40px);
+  text-align: justify;
+  width: 80vw;
+}
+
 @keyframes animation-technologies {
     0% {
         opacity: 0;
@@ -49,15 +58,6 @@ onMounted(() => {
 
 .animate-technologies {
   animation: animation-technologies 1s linear 1s 1 normal both;
-}
-
-#about-me {
-  background-color: white;
-  border: 1px solid lightgrey;
-  height: 70vh;
-  padding: clamp(20px, 4vw, 40px);
-  text-align: justify;
-  width: 80vw;
 }
 
 h1 {
