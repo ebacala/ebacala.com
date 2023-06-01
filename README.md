@@ -1,42 +1,22 @@
-# Nuxt 3 Minimal Starter
+# ebacala.com
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## To Develop
 
-## Setup
-
-Make sure to install the dependencies:
+Node version: 16
 
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
+yarn dev
 ```
 
-## Development Server
+## To Test
 
-Start the development server on http://localhost:3000
+No tests
+
+## To Build
 
 ```bash
-npm run dev
+yarn generate
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+You can now deploy .output/public to any static hosting!
