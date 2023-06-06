@@ -7,7 +7,11 @@
         <h1 id="h1">Hi I'm</h1>
         <h2 id="h2">Evann</h2>
         <div id="job" class="border-radius-10 job">Software Developer</div>
+        <div id="social" class="flex-row align-center justify-center flex-wrap">
+          <LogoGrayscale v-for="logo in logos" :logo="logo" />
+        </div>
       </div>
+
       <img
         id="profile-picture"
         class="profile-picture"
@@ -22,6 +26,8 @@
 import { onMounted } from "vue";
 import { createObserver } from "@/services/animation";
 
+import { Logo } from "@/types/types";
+
 onMounted(() => {
   createObserver(
     document.getElementById("profile-picture"),
@@ -30,7 +36,26 @@ onMounted(() => {
   createObserver(document.getElementById("h1"), "animate-h1");
   createObserver(document.getElementById("h2"), "animate-h2");
   createObserver(document.getElementById("job"), "animate-job");
+  createObserver(document.getElementById("social"), "animate-social");
 });
+
+const logos: Logo[] = [
+  {
+    name: "GitHub",
+    path: "/img/logos/github.webp",
+    link: "https://github.com/ebacala",
+  },
+  {
+    name: "LinkedIn",
+    path: "/img/logos/linkedin.webp",
+    link: "https://www.linkedin.com/in/evann-bacala-491a70150/",
+  },
+  {
+    name: "Twitter",
+    path: "/img/logos/twitter.webp",
+    link: "https://twitter.com/ebacala_",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
@@ -95,6 +120,11 @@ h2 {
   }
 }
 
+.animate-job {
+  animation: animation-job 1s linear 2s 1 normal both;
+  perspective: 4000px;
+}
+
 .job {
   background-color: #00a2ff;
   color: black;
@@ -104,8 +134,17 @@ h2 {
   text-align: center;
 }
 
-.animate-job {
-  animation: animation-job 1s linear 2s 1 normal both;
+@keyframes animation-social {
+  0% {
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -50%, 0);
+  }
+  100% {
+  }
+}
+
+.animate-social {
+  animation: animation-social 1s linear 2s 1 normal both;
   perspective: 4000px;
 }
 </style>
