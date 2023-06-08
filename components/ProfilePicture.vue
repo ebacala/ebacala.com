@@ -50,11 +50,11 @@ const logos: Logo[] = [
     path: "/img/logos/linkedin.webp",
     link: "https://www.linkedin.com/in/evann-bacala-491a70150/",
   },
-  {
-    name: "Twitter",
-    path: "/img/logos/twitter.webp",
-    link: "https://twitter.com/ebacala_",
-  },
+  // {
+  //   name: "Twitter",
+  //   path: "/img/logos/twitter.webp",
+  //   link: "https://twitter.com/ebacala_",
+  // },
 ];
 </script>
 
