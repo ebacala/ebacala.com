@@ -1,0 +1,259 @@
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/fonts/BarlowCondensed-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+html, body {
+  background: url("/assets/img/background.svg");
+  /* background by SVGBackgrounds.com */
+
+  font-family: "Montserrat", sans-serif;
+  font-size : clamp(1rem, 5vmin, 1.25rem);
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.debug {
+  outline: 1px solid red;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.align-left {
+  align-items: left;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-right {
+  align-items: right;
+}
+
+.justify-left {
+  justify-content: left;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.my-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-80 {
+  width: 80vw;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+/* BODY */
+
+.panel {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+@keyframes animation-profile-picture {
+  0% {
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -50%, 0);
+  }
+  100% {
+  }
+}
+
+.profile-picture {
+  --size: min(40vmin, 300px);
+
+  height: var(--size);
+  margin: calc(var(--size) / 4);
+  object-fit: contain;
+  width: var(--size);
+}
+
+.animate-profile-picture {
+  animation: animation-profile-picture 1s linear 2s 1 normal both;
+  perspective: 4000px;
+}
+
+@keyframes animation-title {
+  0% {
+    opacity: 0;
+    transform: translate(0, -100%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 52px);
+  margin: clamp(10px, 2vw, 20px) auto;
+}
+
+.animate-h1 {
+  animation: animation-title 1s linear 0s 1 normal both;
+}
+
+h2 {
+  font-size: clamp(60px, 8vw, 140px);
+  font-weight: 500;
+  margin: clamp(10px, 2vw, 20px) auto;
+}
+
+.animate-h2 {
+  animation: animation-title 1s linear 1s 1 normal both;
+}
+
+@keyframes animation-job {
+  0% {
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -50%, 0);
+  }
+  100% {
+  }
+}
+
+.animate-job {
+  animation: animation-job 1s linear 2s 1 normal both;
+  perspective: 4000px;
+}
+
+.job {
+  background-color: #00a2ff;
+  color: black;
+  font-size: clamp(20px, 3vw, 38px);
+  margin: clamp(10px, 2vw, 20px) auto;
+  padding: clamp(10px, 2vw, 20px);
+  text-align: center;
+}
+
+@keyframes animation-social {
+  0% {
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, 90deg) translate3d(0, -50%, 0);
+  }
+  100% {
+  }
+}
+
+.animate-social {
+  animation: animation-social 1s linear 2s 1 normal both;
+  perspective: 4000px;
+}
+
+@keyframes animation-about-me {
+  0% {
+    opacity: 0;
+    transform: translate(-100%, 0);
+  }
+  100% {
+  }
+}
+
+.animate-about-me {
+  animation: animation-about-me 1s linear 0s 1 normal both;
+}
+
+#about-me {
+  background-color: white;
+  border: 1px solid lightgrey;
+  height: 70vh;
+  padding: clamp(20px, 4vw, 40px);
+  text-align: justify;
+  width: 80vw;
+}
+
+@keyframes animation-technologies {
+  0% {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  100% {
+  }
+}
+
+.animate-technologies {
+  animation: animation-technologies 1s linear 1s 1 normal both;
+}
+
+p {
+  font-family: "Barlow Condensed", monospace;
+  font-size: clamp(15px, 2vmax, 25px);
+  font-weight: 300;
+  line-height: min(30px, 5vmin);
+  margin: clamp(20px, 4vw, 40px) auto;
+}
+
+.logo {
+  --size: clamp(32px, 10vw, 64px);
+
+  filter: grayscale(1);
+  height: var(--size);
+  margin: calc(var(--size) / 4);
+  object-fit: contain;
+  width: var(--size);
+}
+
+.logo:hover {
+  filter: grayscale(0);
+}

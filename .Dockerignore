@@ -1,9 +1,10 @@
-.nuxt
-.output
-node_modules
-dist
+.git
+.github
 .gitignore
-.npmrc
-README.md
+.prettierignore
 .prettierrc.json
-.vscode
+
+app.vue
+components
+pages
+services
