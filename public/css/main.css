@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Barlow Condensed'), url('/fonts/BarlowCondensed-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Montserrat'), url('/fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+html, body {
+  font-family: "Montserrat", sans-serif;
+  font-size : clamp(1rem, 5vmin, 1.25rem);
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.debug {
+  outline: 1px solid red;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.align-left {
+  align-items: left;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-right {
+  align-items: right;
+}
+
+.justify-left {
+  justify-content: left;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.my-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-80 {
+  width: 80vw;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+/* BODY */
+section {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+p {
+  font-family: "Barlow Condensed", monospace;
+  font-size: clamp(15px, 2vmax, 25px);
+  font-weight: 300;
+  line-height: min(30px, 5vmin);
+  margin: clamp(20px, 4vw, 40px) auto;
+}
+
+.logo {
+  --size: clamp(32px, 10vw, 64px);
+
+  filter: grayscale(1);
+  height: var(--size);
+  margin: calc(var(--size) / 4);
+  object-fit: contain;
+  width: var(--size);
+}
+
+.logo:hover {
+  filter: grayscale(0);
+}
