@@ -1,6 +1,7 @@
 import { defineConfig, squooshImageService } from "astro/config";
-
 import sitemap from "@astrojs/sitemap";
+
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +9,5 @@ export default defineConfig({
     service: squooshImageService()
   },
   site: 'https://ebacala.com',
-  integrations: [sitemap()]
+  integrations: [sitemap(), tailwind()]
 });

@@ -19,10 +19,9 @@ const { title, description } = Astro.props;
     <title>{title}</title>
 
     <script is:inline async src="https://umami.ebacala.com/script.js" data-website-id="02c1596f-3c80-41c3-ace6-50990c0bd3e8" data-domains="ebacala.com,www.ebacala.com"></script>
-    
-    <link rel="stylesheet" type="text/css" href="/css/reset.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/main.css" />
 
+    <link rel="stylesheet" href="/css/app.css">
+  
     <link rel="icon" type="image/png" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +29,7 @@ const { title, description } = Astro.props;
     <link rel="manifest" href="/site.webmanifest"></head>
   </head>
 
-  <body>
-	<slot></slot>
+  <body class="p-6 lg:p-10 bg-primary font-primary">
+	  <slot></slot>
   </body>
 </html>

@@ -1,18 +1,62 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 
-import Profile from "../components/Profile.astro";
-import Introduction from "../components/Introduction.astro";
+import LayoutProfle from "../layouts/LayoutProfile.astro";
+
+import profilePicture from "../assets/img/profile-picture.webp";
+
+const socialLinks = [
+  {
+    "name": "GitHub",
+    "link": "https://github.com/ebacala",
+    "logo": import("../assets/img/logos/github.png"),
+    "alt": "GitHub account"
+  },
+  {
+    "name": "LinkedIn",
+    "link": "https://www.linkedin.com/in/evann-bacala-491a70150/",
+    "logo": import("../assets/img/logos/linkedin.webp"),
+    "alt": "LinkedIn account"
+  }
+]
 ---
 
-<Layout title="Evann BACALA" description="Evann BACALA website & portfolio">
-  <Profile />
-  <Introduction />
-</Layout>
+<LayoutProfle title="Evann BACALA" description="Evann BACALA website & portfolio">
+  <section class="flex flex-row items-center justify-start space-x-8 lg:space-x-14">
+    <Image
+      loading="eager"
+      class="w-[100px] md:w-[150px] lg:w-[200px] h-auto"
+      src={profilePicture}
+      alt="Evann BACALA"
+    />
 
-<style>
-  body {
-    background: url("../assets/img/background.svg");
-    /* background by SVGBackgrounds.com */
-  }
-</style>
+    <div class="w-full flex flex-row items-center justify-start sm:justify-between flex-wrap sm:flex-nowrap">
+      <h1 class="w-full sm:w-auto text-3xl md:text-5xl lg:text-6xl italic">Hi I'm Evann</h1>
+    
+      <div class="w-full sm:w-auto flex flex-row items-center justify-start space-x-2">
+        {
+          socialLinks.map((link) => (
+            <a href={link.link} target="_blank">
+              <Image
+                loading="eager"
+                class="w-[25px] md:w-[30px] lg:w-[40px] h-auto"
+                src={link.logo}
+                alt={link.alt}
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="text-justify text-lg mt-8 md:mt-10 md:text-2xl lg:mt-20 lg:text-3xl space-y-2 md:space-y-5 lg:space-y-8">
+    <p>
+      My tech journey began in 2016 with a 2-year computer science program, 
+      followed by a 3-year work-study program alternating between school and real-world projects, 
+      primarily in the French national health system.
+    </p>
+    <p>Since 2022, I've been continuously expanding my technical and soft skills through new technologies and tools.</p>
+    <p>Always focusing on delivering <strong class="underline italic font-normal">high-quality results</strong>, I am consistenly happy to bring my perspective to the table.</p>
+  </section>
+</LayoutProfle>

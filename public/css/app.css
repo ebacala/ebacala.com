@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "GaramondLibre";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("GaramondLibre"),
+      url("/fonts/GaramondLibre-Regular.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "GaramondLibre";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("GaramondLibre"),
+      url("/fonts/GaramondLibre-Bold.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "GaramondLibre";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local("GaramondLibre"),
+      url("/fonts/GaramondLibre-Italic.otf") format("opentype");
+  }
+}
