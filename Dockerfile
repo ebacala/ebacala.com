@@ -2,6 +2,7 @@ FROM node:20-slim AS builder
 
 WORKDIR /app
 
+RUN npm i -g pnpm
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --ignore-scripts
 
