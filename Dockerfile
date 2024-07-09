@@ -2,11 +2,11 @@ FROM node:20-slim AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn --ignore-scripts
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --ignore-scripts
 
 COPY . .
-RUN yarn build
+RUN pnpm build
 
 ##########
 
