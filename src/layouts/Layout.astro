@@ -31,5 +31,10 @@ const { title, description } = Astro.props;
 
   <body class="p-6 lg:p-10 bg-primary font-primary">
 	  <slot></slot>
+
+    <nav class="w-full flex flex-row items-center justify-end space-x-8 text-lg md:text-2xl lg:text-3xl fixed bottom-0 right-0 py-1 pr-2 bg-primary ">
+      <a href="/" class="hover:underline">About Me</a>
+      <a href="/thoughts" class="hover:underline">Thoughts</a>
+    </nav>
   </body>
 </html>

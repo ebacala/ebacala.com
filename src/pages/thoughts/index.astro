@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const posts = await Astro.glob('./*.md');
+
+const getThoughtDateString = (dateString: string) => {
+    const thoughtDate = new Date(dateString);
+    return `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth() + 1).toString().padStart(2, '0')}-${thoughtDate.getDate().toString().padStart(2, '0')}`
+}
+---
+
+<Layout title="Evann's thoughts" description="Some thoughts here and there">
+    <section class="space-y-6 mb-8">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">Evann's thoughts</h1>
+        <p class="text-lg md:text-2xl lg:text-3xl italic text-center">A place where I write my thoughts...</p>
+    </section>
+
+    <section class="w-full max-w-screen-md mx-auto space-y-4 flex flex-col">
+        {
+            posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+                 .map(post => (
+                <a href={post.url} class="text-md md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getThoughtDateString(post.frontmatter.date)})</a>
+            ))
+        }
+    </section>
+</Layout>
