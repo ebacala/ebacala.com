@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 
 import LayoutProfle from "../layouts/LayoutProfile.astro";
 
-import profilePicture from "../assets/img/profile-picture.webp";
+import profilePicture from "../assets/img/profile-picture.png"
 
 const socialLinks = [
   {
@@ -25,7 +25,7 @@ const socialLinks = [
   <section class="flex flex-row items-center justify-start space-x-8 lg:space-x-14">
     <Image
       loading="eager"
-      class="w-[100px] md:w-[150px] lg:w-[200px] h-auto"
+      class="w-[100px] md:w-[150px] lg:w-[200px] h-auto border rounded-full border-black"
       src={profilePicture}
       alt="Evann BACALA"
     />
