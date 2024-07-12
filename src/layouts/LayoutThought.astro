@@ -4,15 +4,17 @@ interface Props {
 	description: string;
   frontmatter: {
     title: string;
+    description: string;
     author: string;
     date: string;
     slug: string;
   };
 }
 
-const { title, description, frontmatter } = Astro.props;
+const { frontmatter } = Astro.props;
 
 const thoughtTitle = frontmatter.title;
+const thoughtDescription = frontmatter.description;
 const thoughtDate = new Date(frontmatter.date)
 const thoughtDateString = `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth() + 1).toString().padStart(2, '0')}-${thoughtDate.getDate().toString().padStart(2, '0')}`
 ---
@@ -24,9 +26,9 @@ const thoughtDateString = `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth(
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6efe9">
     
-    <meta name="description" content={description}>
+    <meta name="description" content={thoughtDescription}>
     <meta name="robots" content="noimageindex">
-    <title>{title}</title>
+    <title>{thoughtTitle}</title>
 
     <script is:inline async src="https://umami.ebacala.com/script.js" data-website-id="02c1596f-3c80-41c3-ace6-50990c0bd3e8" data-domains="ebacala.com,www.ebacala.com"></script>
 

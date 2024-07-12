@@ -1,5 +1,6 @@
 ---
 title: Overwhelmed
+description: Acknowledging overwhelm and taking a break
 author: Evann
 date: 2024-07-09
 layout: ../../layouts/LayoutThought.astro
