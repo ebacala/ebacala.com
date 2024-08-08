@@ -7,7 +7,7 @@ export default {
 				'primary': ['GaramondLibre', "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
 			},
 			backgroundColor: {
-				'primary': '#f6efe9',
+				'primary': '#ffffff',
 			},
 		},
 	},
