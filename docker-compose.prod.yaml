@@ -1,0 +1,6 @@
+services:
+  ebacala.com:
+    image: ghcr.io/ebacala/ebacala.com:latest
+    ports:
+      - "80:80"
+    restart: unless-stopped
