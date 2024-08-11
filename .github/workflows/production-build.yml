@@ -5,15 +5,16 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read
-  packages: write
+  contents: write
+  # packages: write
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: "ebacala/ebacala.com"
+# env:
+#   REGISTRY: ghcr.io
+#   IMAGE_NAME: "ebacala/ebacala.com"
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, 'Build: Update dist files')"
     runs-on: ubuntu-latest
 
     steps:
@@ -35,14 +36,22 @@ jobs:
       with:
           latest_git_branch: main
           latest_docker_tag_name: latest
-    - name: Build image and push to registry
-      uses: docker/build-push-action@v5
+    - name: Build project
+      run: pnpm run build
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        context: .
-        file: Dockerfile
-        platforms: linux/amd64
-        push: true
-        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.docker-tag }}
+        commit_message: "Build: Update dist files"
+        file_pattern: dist/*
+
+    # - name: Build image and push to registry
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: .
+    #     file: Dockerfile
+    #     platforms: linux/amd64
+    #     push: true
+    #     tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.docker-tag }}
     - name: Deploy to Coolify
       run: | 
         curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
