@@ -13,10 +13,10 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const thoughtTitle = frontmatter.title;
-const thoughtDescription = frontmatter.description;
-const thoughtDate = new Date(frontmatter.date)
-const thoughtDateString = `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth() + 1).toString().padStart(2, '0')}-${thoughtDate.getDate().toString().padStart(2, '0')}`
+const blogTitle = frontmatter.title;
+const blogDescription = frontmatter.description;
+const blogDate = new Date(frontmatter.date)
+const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).toString().padStart(2, '0')}-${blogDate.getDate().toString().padStart(2, '0')}`
 ---
 
 <!DOCTYPE html>
@@ -26,9 +26,9 @@ const thoughtDateString = `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth(
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
     
-    <meta name="description" content={thoughtDescription}>
+    <meta name="description" content={blogDescription}>
     <meta name="robots" content="noimageindex">
-    <title>{thoughtTitle}</title>
+    <title>{blogTitle}</title>
 
     <script is:inline async src="https://umami.ebacala.com/script.js" data-website-id="02c1596f-3c80-41c3-ace6-50990c0bd3e8" data-domains="ebacala.com,www.ebacala.com"></script>
 
@@ -45,10 +45,10 @@ const thoughtDateString = `${thoughtDate.getFullYear()}-${(thoughtDate.getMonth(
 
   <body class="p-6 lg:p-10 bg-primary font-primary">
     <section class="w-full max-w-screen-md mx-auto space-y-4 md:space-y-6 lg:space-y-8">
-      <a href="/thoughts" class="text-md md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
+      <a href="/blog" class="text-md md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
 
-      <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">{thoughtTitle}</h1>
-      <h2 class="text-md md:text-lg lg:text-xl italic">Published {thoughtDateString}.</h2>
+      <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">{blogTitle}</h1>
+      <h2 class="text-md md:text-lg lg:text-xl italic">Published {blogDateString}.</h2>
 
       <article class="text-md md:text-lg lg:text-xl text-justify space-y-4 indent-5">
         <slot></slot>
