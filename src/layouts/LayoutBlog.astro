@@ -19,6 +19,9 @@ const blogTitle = frontmatter.title;
 const blogDescription = frontmatter.description;
 const blogDate = new Date(frontmatter.date)
 const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).toString().padStart(2, '0')}-${blogDate.getDate().toString().padStart(2, '0')}`
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const url = canonicalUrl.href;
 ---
 
 <!DOCTYPE html>
@@ -35,6 +38,7 @@ const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).to
     <script is:inline defer async src="https://cloud.umami.is/script.js" data-website-id="a26c5f40-65b5-4a99-90c5-0280f3de8fbf" data-domains="ebacala.com"></script>
     
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="canonical" href={url}>
   
     <link rel="icon" type="image/png" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -67,7 +71,7 @@ const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).to
       const article = document.querySelector('article');
       if (article) {
         const preCodes = article.querySelectorAll('pre code');
-        preCodes.forEach((preCode, index) => {
+        preCodes.forEach((preCode) => {
           const lines = preCode.querySelectorAll('.line');
 
           let maxWidth = 0;
@@ -79,7 +83,7 @@ const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).to
             }
           });
           lines.forEach(line => {
-            line.style.width = `${maxWidth}px`;
+            (line as HTMLElement).style.width = `${maxWidth}px`;
           });
         });
       }
