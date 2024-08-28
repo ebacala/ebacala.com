@@ -18,9 +18,11 @@ const getBlogDateString = (dateString: string) => {
     <section class="w-full max-w-screen-md mx-auto space-y-4 flex flex-col">
         {
             posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
-                 .map(post => (
-                <a href={post.url} class="text-base md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getBlogDateString(post.frontmatter.date)})</a>
-            ))
+                 .map(post => {
+                    const url = post.url.split('/').slice(-1)[0];
+                    const urlWithSlash = url.endsWith('/') ? url : `${url}/`;
+                    return <a href={urlWithSlash} class="text-base md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getBlogDateString(post.frontmatter.date)})</a>
+                })
         }
     </section>
 </Layout>
