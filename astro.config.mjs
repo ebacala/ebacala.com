@@ -97,9 +97,9 @@ export default defineConfig({
       transformers: [
         transformerMeta(),
         transformerCopyButton(),
-        transformerNotationDiff(),
+        transformerNotationDiff()
       ],
-      wrap: true,
+      wrap: false,
     },
   },
 });

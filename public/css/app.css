@@ -52,10 +52,10 @@
     }
 
     pre {
-      @apply rounded-md flex flex-col items-start justify-center;
+      @apply rounded-md flex flex-col items-start justify-center relative;
 
       .pre-header {
-        @apply w-full flex flex-col items-start justify-center;
+        @apply w-full flex flex-col items-start justify-center sticky top-0 left-0;
 
         .pre-title {
           @apply bg-gray-700 text-sm md:text-base lg:text-lg py-1 px-4 rounded-md w-full text-center;
@@ -78,7 +78,7 @@
         @apply text-sm md:text-base lg:text-lg w-full block px-[1.25rem] indent-0;
 
         .line {
-          @apply inline-block w-full;
+          @apply inline-block min-w-full w-auto;
         }
 
         .diff.add {

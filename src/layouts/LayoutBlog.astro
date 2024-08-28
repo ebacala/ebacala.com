@@ -60,4 +60,29 @@ const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).to
       <a href="#" class="text-base md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>
     </section>
   </body>
+
+  <script>
+    // Make every <code> line's width set to the maximum line width found
+    document.addEventListener('DOMContentLoaded', () => {
+      const article = document.querySelector('article');
+      if (article) {
+        const preCodes = article.querySelectorAll('pre code');
+        preCodes.forEach((preCode, index) => {
+          const lines = preCode.querySelectorAll('.line');
+
+          let maxWidth = 0;
+
+          lines.forEach(line => {
+            const width = line.getBoundingClientRect().width;
+            if (width > maxWidth) {
+              maxWidth = width;
+            }
+          });
+          lines.forEach(line => {
+            line.style.width = `${maxWidth}px`;
+          });
+        });
+      }
+    });
+  </script>
 </html>
