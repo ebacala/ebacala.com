@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const posts = await Astro.glob('./*.md');
+const posts = await Astro.glob('./*.md*');
 
 const getBlogDateString = (dateString: string) => {
     const blogDate = new Date(dateString);
@@ -19,7 +19,7 @@ const getBlogDateString = (dateString: string) => {
         {
             posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
                  .map(post => (
-                <a href={post.url} class="text-md md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getBlogDateString(post.frontmatter.date)})</a>
+                <a href={post.url} class="text-base md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getBlogDateString(post.frontmatter.date)})</a>
             ))
         }
     </section>

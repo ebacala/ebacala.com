@@ -11,6 +11,8 @@ interface Props {
   };
 }
 
+import '/public/css/app.css';
+
 const { frontmatter } = Astro.props;
 
 const blogTitle = frontmatter.title;
@@ -45,17 +47,17 @@ const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).to
 
   <body class="p-6 lg:p-10 bg-primary font-primary">
     <section class="w-full max-w-screen-md mx-auto space-y-4 md:space-y-6 lg:space-y-8">
-      <a href="/blog" class="text-md md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
+      <a href="/blog" class="text-base md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
 
       <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">{blogTitle}</h1>
-      <h2 class="text-md md:text-lg lg:text-xl italic">Published {blogDateString}.</h2>
+      <h2 class="text-base md:text-lg lg:text-xl italic">Published {blogDateString}.</h2>
 
-      <article class="text-md md:text-lg lg:text-xl text-justify space-y-4 indent-5">
+      <article class="text-base md:text-lg lg:text-xl text-justify space-y-4 indent-5">
         <slot></slot>
-        <p class="text-md md:text-lg lg:text-xl text-right italic">{frontmatter.author}</p>
+        <p class="text-base md:text-lg lg:text-xl text-right italic">{frontmatter.author}</p>
       </article>
 
-      <a href="#" class="text-md md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>
+      <a href="#" class="text-base md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>
     </section>
   </body>
 </html>

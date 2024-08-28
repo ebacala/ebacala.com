@@ -29,4 +29,79 @@
     src: local("GaramondLibre"),
       url("/fonts/GaramondLibre-Italic.otf") format("opentype");
   }
+
+  article {
+    p {
+      @apply leading-relaxed;
+    }
+
+    h2 {
+      @apply text-xl py-1 md:text-2xl md:py-3 lg:text-3xl lg:py-5;
+    }
+
+    h3 {
+      @apply text-lg py-1 md:text-xl md:py-2 lg:text-2xl lg:py-3;
+    }
+
+    li {
+      @apply list-disc ml-6 lg:ml-10;
+    }
+
+    a {
+      @apply underline;
+    }
+
+    pre {
+      @apply rounded-md flex flex-col items-start justify-center;
+
+      .pre-header {
+        @apply w-full flex flex-col items-start justify-center;
+
+        .pre-title {
+          @apply bg-gray-700 text-sm md:text-base lg:text-lg py-1 px-4 rounded-md w-full text-center;
+        }
+
+        .wrapper-copy-code {
+          @apply w-full flex flex-row-reverse;
+
+          .copy-code {
+            @apply text-sm md:text-base lg:text-lg m-1 py-1 px-4 rounded-md;
+
+            &:hover {
+              @apply bg-gray-500;
+            }
+          }
+        }
+      }
+
+      & > code {
+        @apply text-sm md:text-base lg:text-lg w-full block px-[1.25rem] indent-0;
+
+        .line {
+          @apply inline-block w-full;
+        }
+
+        .diff.add {
+          @apply bg-green-800 relative;
+          
+          &:before {
+            content: "+";
+            @apply absolute left-[-1rem] text-green-500;
+          }
+        }
+        .diff.remove {
+          @apply bg-red-800 opacity-80 relative;
+
+          &:before {
+            content: "-";
+            @apply absolute left-[-1rem] text-red-500;
+          }
+        }
+      }
+    }
+
+    code:not(pre code) {
+      @apply text-sm md:text-base lg:text-lg bg-gray-300 py-1 px-2 rounded-md;
+    }
+  }
 }
