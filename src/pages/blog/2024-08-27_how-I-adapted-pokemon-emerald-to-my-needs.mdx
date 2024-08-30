@@ -12,11 +12,11 @@ My first experience with a Pokémon game was in 2006. I remember playing Pokémo
 
 When growing up, I got to play other video games but somehow it seemed I would always come back to playing Pokémon Emerald, starting a new game every year or so.
 
-Recently I started once again a new game, this time on an emulator so that I didn’t need to pack my GBA everywhere (I still kept the cartridge out of nostalgia). This time the more I played the more I felt frustrated with some of the game features. For example, I have never ever traded POKéMONs with friends, so I never got to complete my Pokédex as some POKéMONs can only evolve through trading. Another thing is that PP Ups can't be bought with money, and it bothered me that I couldn't max out my POKéMONs moves when farming XP. 
+Recently I started once again a new game, this time on an emulator so that I didn’t need to pack my GBA everywhere (I still kept the cartridge out of nostalgia). This time the more I played the more I felt frustrated with some of the game features. For example, I have never ever traded Pokémons with friends, so I never got to complete my Pokédex as some Pokémons can only evolve through trading. Another thing is that PP Ups can't be bought with money, and it bothered me that I couldn't max out my Pokémons moves when farming XP. 
 
 These are only a few things that bothered me, the more I kept playing the more I found little things that could be improved for a either a better game experience or a better game logic.
 
-A year or so ago, I watched a YouTube video about how a guy modified the game so that it had the first POKéMON of its team follow him like in Pokémon Heartgold and Soulsilver (for the curious it was [this video](https://www.youtube.com/watch?v=2tpBooD_X7k&pp=ygUicG9rZW1vbiBlbWVyYWxkIHBva2Vtb24gZm9sbG93IHlvdQ%3D%3D)). Naturally, being a developer I thought "if this guy did it, why can't I adapt the game to my needs?". And that is exactly what I did, I resolved my frustations one at a time.
+A year or so ago, I watched a YouTube video about how a guy modified the game so that it had the first Pokémon of its team follow him like in Pokémon Heartgold and Soulsilver (for the curious it was [this video](https://www.youtube.com/watch?v=2tpBooD_X7k&pp=ygUicG9rZW1vbiBlbWVyYWxkIHBva2Vtb24gZm9sbG93IHlvdQ%3D%3D)). Naturally, being a developer I thought "if this guy did it, why can't I adapt the game to my needs?". And that is exactly what I did, I resolved my frustations one at a time.
 
 ## Setting up the project
 
@@ -63,7 +63,7 @@ Now all you have to do is run `./build.sh` to build the game (the compilation pa
 
 ### Translation
 
-This project is a decompilation of the English version of the game. I am French and I grew up playing the French version of Pokémon. Even though I do speak English now, I'm still used to the French POKéMONs names, same thing for their moves, abilities and natures. So that's the first thing I changed. It is not difficult to change the text, it is just tedious. The files will look like this:
+This project is a decompilation of the English version of the game. I am French and I grew up playing the French version of Pokémon. Even though I do speak English now, I'm still used to the French Pokémons names, same thing for their moves, abilities and natures. So that's the first thing I changed. It is not difficult to change the text, it is just tedious. The files will look like this:
 
 ```c title=src/data/text/species_names.h
 const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
@@ -101,13 +101,13 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
 
 ```c title=src/data/text/abilities.h
 static const u8 sNoneDescription[] = _("No special ability."); // [!code --]
-static const u8 sStenchDescription[] = _("Helps repel wild POKéMON."); // [!code --]
+static const u8 sStenchDescription[] = _("Helps repel wild Pokémon."); // [!code --]
 ...
 static const u8 sNoneDescription[] = _("Pas de talent."); // [!code ++]
-static const u8 sStenchDescription[] = _("Repousse POKéMON sauvage."); // [!code ++]
+static const u8 sStenchDescription[] = _("Repousse Pokémon sauvage."); // [!code ++]
 ```
 
-A few hundred translations is what it took for me to get a basic enjoyment of the modified game. Now I have a bastardised version of the game where all the text is in English except for the POKéMONs names, moves, abilities and natures, but it doesn't bother me at all.
+A few hundred translations is what it took for me to get a basic enjoyment of the modified game. Now I have a bastardised version of the game where all the text is in English except for the Pokémons names, moves, abilities and natures, but it doesn't bother me at all.
 
 ### Removing the overwrite save confirmation dialog
 
@@ -139,7 +139,7 @@ Instead of asking me if I really want to overwrite my save file, it now just ski
 
 ### Allow PP Ups buying
 
-Like I said in the [introduction](#introduction), in the end-game, it is frustrating to not be able to max out my POKéMONs moves PPs. Luckily, it is very easy to change. I decided to only have the Battle Frontier Pokémart sell PP Ups (as it is supposed to be where the best trainers are, might as well give them the best items to buy). It only takes a line of code to add PP Ups to the list of sold items by this Pokémart.
+Like I said in the [introduction](#introduction), in the end-game, it is frustrating to not be able to max out my Pokémons moves PPs. Luckily, it is very easy to change. I decided to only have the Battle Frontier Pokémart sell PP Ups (as it is supposed to be where the best trainers are, might as well give them the best items to buy). It only takes a line of code to add PP Ups to the list of sold items by this Pokémart.
 
 ```plaintext title=data/maps/BattleFrontier_Mart/scripts.inc
 BattleFrontier_Mart_Pokemart:
@@ -150,13 +150,13 @@ BattleFrontier_Mart_Pokemart:
   ...
 ```
 
-Each line represent an item that can be bought at the Pokémart. Later on, I decided to have this specific Pokémart sell numerous more items, useful for battling of completing the POKéDEX more easily. These are the items that I decided to add :
+Each line represent an item that can be bought at the Pokémart. Later on, I decided to have this specific Pokémart sell numerous more items, useful for battling of completing the Pokédex more easily. These are the items that I decided to add :
 
 - All the evolution stones
-- Deep Sea Tooth & Deep Sea Scale (10 000 POKéDOLLARS each)
+- Deep Sea Tooth & Deep Sea Scale (₽10,000 each)
 - All the TMs
-- Ether (2 500 POKéDOLLARS) & Max Ether (5 000 POKéDOLLARS)
-- Elixir (5 000 POKéDOLLARS) & Max Elixir (10 000 POKéDOLLARS)
+- Ether (₽2,500) & Max Ether (₽5,000)
+- Elixir (₽5,000) & Max Elixir (₽10,000)
 
 You can see that I also changed the price the Ethers and Elixirs are sold for. I chose to do that because I thought that they were quite underpriced compared to their actual value. To do so is quite simple, I just needed to change the price in the items header file, for example for the Ether:
 
@@ -183,7 +183,7 @@ A little fun fact is that this file sets the Master Ball price to 0, making it q
 
 ### Trade with myself
 
-Growing up, I never traded POKéMONs to get some of them to evolve so I never completed the POKéDEX. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480) provided a great way to achieve this. Kudos to them!
+Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480) provided a great way to achieve this. Kudos to them!
 
 The first step is to find an NPC (non-playable character) that is not crucial for the game story completion. I chose the "Fat Man" (that's not me, it is how he's called in the source code 🤷‍♂️) in Littleroot Town.
 
@@ -224,7 +224,7 @@ I didn't include the other scripts that are part of the self-trade, these ones h
 special ChoosePartyMon
 ```
 
-The `ChoosePartyMon` function is a special macro that loads the screen asking the player to choose a POKéMON in their team. It returns the index of the POKéMON they chose in the `VAR_0x8004` buffer adress. If they didn't choose any POKéMON (*ie:* exited the screen), it will return `255`.
+The `ChoosePartyMon` function is a special macro that loads the screen asking the player to choose a Pokémon in their team. It returns the index of the Pokémon they chose in the `VAR_0x8004` buffer adress. If they didn't choose any Pokémon (*ie:* exited the screen), it will return `255`.
 
 ```c
 compare VAR_0x8004, 255
@@ -248,7 +248,7 @@ void CreateInGameTradePokemon(void)
 ...
 ```
 
-Here we are inside the function handling the POKéMON trade. If the `VAR_0x8004` value is `6` then we set the POKéMON of the trade partner to the chosen POKéMON in our team, effectively making the player trade with themselves. Otherwise we load the normal trade process.
+Here we are inside the function handling the Pokémon trade. If the `VAR_0x8004` value is `6` then we set the Pokémon of the trade partner to the chosen Pokémon in our team, effectively making the player trade with themselves. Otherwise we load the normal trade process.
 
 ### Conclusion
 
