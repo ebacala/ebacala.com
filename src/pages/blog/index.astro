@@ -21,7 +21,7 @@ const getBlogDateString = (dateString: string) => {
                  .map(post => {
                     const url = post.url.split('/').slice(-1)[0];
                     const urlWithSlash = url.endsWith('/') ? url : `${url}/`;
-                    return <a href={urlWithSlash} class="text-base md:text-lg lg:text-xl hover:underline">{post.frontmatter.title} ({getBlogDateString(post.frontmatter.date)})</a>
+                    return <a href={urlWithSlash} class="text-base md:text-lg lg:text-xl hover:underline">({getBlogDateString(post.frontmatter.date)}) - {post.frontmatter.title}</a>
                 })
         }
     </section>
