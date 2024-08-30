@@ -85,6 +85,12 @@ const url = canonicalUrl.href;
           lines.forEach(line => {
             (line as HTMLElement).style.width = `${maxWidth}px`;
           });
+
+          // Remove the last .line if it's empty
+          const lastLine = lines[lines.length - 1];
+          if (lastLine && lastLine.textContent?.trim() === '') {
+            lastLine.remove();
+          }
         });
       }
     });
