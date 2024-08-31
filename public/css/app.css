@@ -36,7 +36,7 @@
     }
 
     h2 {
-      @apply text-xl py-1 md:text-2xl md:py-3 lg:text-3xl lg:py-5;
+      @apply text-xl pt-2 pb-1 md:text-2xl md:pb-3 md:pt-6 lg:text-3xl lg:pb-5 lg:pt-10;
     }
 
     h3 {
