@@ -58,14 +58,14 @@
         @apply w-full flex flex-col items-start justify-center sticky top-0 left-0;
 
         .pre-title {
-          @apply bg-gray-700 text-sm md:text-base lg:text-lg py-1 px-4 rounded-md w-full text-center;
+          @apply bg-gray-700 text-xs md:text-sm lg:text-base py-1 px-4 rounded-md w-full text-center;
         }
 
         .wrapper-copy-code {
           @apply w-full flex flex-row-reverse;
 
           .copy-code {
-            @apply text-sm md:text-base lg:text-lg m-1 py-1 px-4 rounded-md;
+            @apply text-xs md:text-sm lg:text-base m-1 py-1 px-4 rounded-md;
 
             &:hover {
               @apply bg-gray-500;
@@ -75,7 +75,7 @@
       }
 
       & > code {
-        @apply text-sm md:text-base lg:text-lg w-full block px-[1.25rem] indent-0;
+        @apply text-xs md:text-sm lg:text-base w-full block px-[1.25rem] indent-0;
 
         .line {
           @apply inline-block min-w-full w-auto;
