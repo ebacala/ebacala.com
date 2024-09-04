@@ -101,7 +101,7 @@
     }
 
     code:not(pre code) {
-      @apply text-sm md:text-base lg:text-lg bg-gray-300 py-1 px-2 rounded-md;
+      @apply text-xs md:text-sm lg:text-base bg-gray-300 py-1 px-2 rounded-md;
     }
   }
 }
