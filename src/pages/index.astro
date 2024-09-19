@@ -5,6 +5,8 @@ import Layout from "../layouts/Layout.astro";
 
 import profilePicture from "../assets/img/profile-picture.png"
 
+const description = "Welcome to my personal website and blog! Always focusing on delivering high-quality results, I am consistently happy to bring my perspective to the table."
+
 const socialLinks = [
   {
     "name": "GitHub",
@@ -21,7 +23,7 @@ const socialLinks = [
 ]
 ---
 
-<Layout title="Evann BACALA" description="Evann BACALA website & portfolio">
+<Layout title="Evann BACALA's personal website" description={description}>
   <section class="flex flex-row items-center justify-start space-x-8 lg:space-x-14">
     <Image
       loading="eager"
@@ -57,6 +59,6 @@ const socialLinks = [
       primarily for the French national health system.
     </p>
     <p>Since 2022, I've been continuously expanding my technical and soft skills through new technologies and tools.</p>
-    <p>Always focusing on delivering <strong class="underline italic font-normal">high-quality results</strong>, I am consistenly happy to bring my perspective to the table.</p>
+    <p>Always focusing on delivering <strong class="underline italic font-normal">high-quality results</strong>, I am consistently happy to bring my perspective to the table.</p>
   </section>
 </Layout>
