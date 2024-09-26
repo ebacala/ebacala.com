@@ -18,7 +18,7 @@ const blogEntries = await getCollection('blog');
                     const blogEntryDate = new Date(blogEntry.data.date)
                     const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, '0')}-${blogEntryDate.getDate().toString().padStart(2, '0')}`
 
-                    return <a href={blogEntry.slug} class="text-base md:text-lg lg:text-xl hover:underline">({blogEntryDateString}) - {blogEntry.data.title}</a>
+                    return <a href={`/blog/${blogEntry.slug}`} class="text-base md:text-lg lg:text-xl hover:underline">({blogEntryDateString}) - {blogEntry.data.title}</a>
                 })
         }
     </section>
