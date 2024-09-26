@@ -3,7 +3,6 @@ title: Overwhelmed
 description: Acknowledging overwhelm and taking a break
 author: Evann
 date: 2024-07-09
-layout: ../../layouts/LayoutBlog.astro
 ---
 
 Recently, I've been feeling overwhelmed by the rapid developments in the tech world. The constant advancements in AI, viral success stories constantly flooding my feed, ongoing tech stack debates and clashes, the daily release of new frameworks and libraries have been triggering my Fear of Missing Out (FOMO) mechanism. It has become overwhelming and exhausting.

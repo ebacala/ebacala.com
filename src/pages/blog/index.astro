@@ -1,12 +1,9 @@
 ---
+import { getCollection } from "astro:content";
+
 import Layout from "../../layouts/Layout.astro";
 
-const posts = await Astro.glob('./*.md*');
-
-const getBlogDateString = (dateString: string) => {
-    const blogDate = new Date(dateString);
-    return `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).toString().padStart(2, '0')}-${blogDate.getDate().toString().padStart(2, '0')}`
-}
+const blogEntries = await getCollection('blog');
 ---
 
 <Layout title="Evann's blog" description="Some thoughts here and there">
@@ -16,11 +13,12 @@ const getBlogDateString = (dateString: string) => {
 
     <section class="w-full max-w-screen-md mx-auto space-y-4 flex flex-col">
         {
-            posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
-                 .map(post => {
-                    const url = post.url.split('/').slice(-1)[0];
-                    const urlWithSlash = url.endsWith('/') ? url : `${url}/`;
-                    return <a href={urlWithSlash} class="text-base md:text-lg lg:text-xl hover:underline">({getBlogDateString(post.frontmatter.date)}) - {post.frontmatter.title}</a>
+            blogEntries.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+                 .map(blogEntry => {
+                    const blogEntryDate = new Date(blogEntry.data.date)
+                    const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, '0')}-${blogEntryDate.getDate().toString().padStart(2, '0')}`
+
+                    return <a href={blogEntry.slug} class="text-base md:text-lg lg:text-xl hover:underline">({blogEntryDateString}) - {blogEntry.data.title}</a>
                 })
         }
     </section>

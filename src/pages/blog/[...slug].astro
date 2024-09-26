@@ -1,26 +1,25 @@
 ---
-interface Props {
-	title: string;
-	description: string;
-  frontmatter: {
-    title: string;
-    description: string;
-    author: string;
-    date: string;
-    slug: string;
-  };
-}
+import { getCollection } from 'astro:content';
 
 import '/public/css/app.css';
 
-const { frontmatter } = Astro.props;
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
 
-const blogTitle = frontmatter.title;
-const blogDescription = frontmatter.description;
-const blogDate = new Date(frontmatter.date)
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const blogTitle = entry.data.title;
+const blogAuthor = entry.data.author;
+const blogDescription = entry.data.description;
+const blogDate = new Date(entry.data.date)
 const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).toString().padStart(2, '0')}-${blogDate.getDate().toString().padStart(2, '0')}`
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = new URL(entry.slug, Astro.site);
 const url = canonicalUrl.href;
 ---
 
@@ -33,7 +32,7 @@ const url = canonicalUrl.href;
     
     <meta name="description" content={blogDescription}>
     <meta name="robots" content="noimageindex">
-    <title>Evann's blog: {blogTitle}</title>
+    <title>{blogTitle}</title>
 
     <script is:inline defer async src="https://cloud.umami.is/script.js" data-website-id="a26c5f40-65b5-4a99-90c5-0280f3de8fbf" data-domains="ebacala.com"></script>
     
@@ -57,8 +56,8 @@ const url = canonicalUrl.href;
       <h2 class="text-base md:text-lg lg:text-xl italic">Published {blogDateString}.</h2>
 
       <article class="text-base md:text-lg lg:text-xl text-justify space-y-4 indent-5">
-        <slot></slot>
-        <p class="text-base md:text-lg lg:text-xl text-right italic">{frontmatter.author}</p>
+        <Content />
+        <p class="text-base md:text-lg lg:text-xl text-right italic">{blogAuthor}</p>
       </article>
 
       <a href="#" class="text-base md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>

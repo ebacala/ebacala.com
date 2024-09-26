@@ -111,6 +111,7 @@ const transformerCopyButton = () => ({
 export default defineConfig({
   site: "https://ebacala.com",
   integrations: [sitemap(), tailwind()],
+  trailingSlash: "never",
   markdown: {
     shikiConfig: {
       theme: "dracula",

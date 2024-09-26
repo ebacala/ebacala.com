@@ -3,7 +3,6 @@ title: How I adapted Pokémon Emerald to my needs?
 description: A few things I changed in the game to make it more enjoyable for me
 author: Evann
 date: 2024-08-27
-layout: ../../layouts/LayoutBlog.astro
 ---
 
 ## Introduction
