@@ -1,6 +1,6 @@
 ---
 title: Create a code block with a copy button using Astro, Markdown and Shiki
-description: Learn how to implement a copyable code block feature with Astro, Markdown and Shiki.
+description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
 date: 2024-09-13
 ---

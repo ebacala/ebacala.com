@@ -1,6 +1,6 @@
 ---
 title: Overwhelmed
-description: Acknowledging overwhelm and taking a break
+description: A thought about feeling overwhelmed, acknowledging it and taking a break to get back at it stronger and better.
 author: Evann
 date: 2024-07-09
 ---

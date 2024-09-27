@@ -1,6 +1,6 @@
 ---
 title: How I adapted Pokémon Emerald to my needs?
-description: A few things I changed in the game to make it more enjoyable for me
+description: The story of how I found out I could adapt Pokémon Emerald to my needs and how I changed a few things to make the game more enjoyable for me.
 author: Evann
 date: 2024-08-27
 ---
