@@ -19,8 +19,7 @@ const blogDescription = entry.data.description;
 const blogDate = new Date(entry.data.date)
 const blogDateString = `${blogDate.getFullYear()}-${(blogDate.getMonth() + 1).toString().padStart(2, '0')}-${blogDate.getDate().toString().padStart(2, '0')}`
 
-const canonicalUrl = new URL(entry.slug, Astro.site);
-const url = canonicalUrl.href;
+const url = Astro.url.href;
 ---
 
 <LayoutBlogEntry title={blogTitle} description={blogDescription} date={blogDateString} author={blogAuthor} url={url}>
