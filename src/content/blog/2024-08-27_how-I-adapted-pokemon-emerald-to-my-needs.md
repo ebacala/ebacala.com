@@ -182,7 +182,7 @@ A little fun fact is that this file sets the Master Ball price to 0, making it q
 
 ### Trade with myself
 
-Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480) provided a great way to achieve this. Kudos to them!
+Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/threads/simple-modifications-directory.416647/page-9#post-10215480) provided a great way to achieve this. Kudos to them!
 
 The first step is to find an NPC (non-playable character) that is not crucial for the game story completion. I chose the "Fat Man" (that's not me, it is how he's called in the source code 🤷‍♂️) in Littleroot Town.
 
