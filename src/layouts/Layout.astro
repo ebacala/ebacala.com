@@ -1,5 +1,6 @@
 ---
 import '../assets/css/app.css';
+import ogImage from "../assets/img/og-image.png"
 interface Props {
 	title: string;
 	description: string;
@@ -34,6 +35,7 @@ const url = canonicalUrl.href;
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:url" content={url}>
+    <meta property="og:image" content={ogImage.src}>
 
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
