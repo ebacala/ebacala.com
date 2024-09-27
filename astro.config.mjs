@@ -110,8 +110,10 @@ const transformerCopyButton = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: "https://ebacala.com",
-  integrations: [sitemap(), tailwind()],
-  trailingSlash: "never",
+  integrations: [sitemap(), tailwind({
+    applyBaseStyles: false,
+  })],
+  trailingSlash: "always",
   markdown: {
     shikiConfig: {
       theme: "dracula",

@@ -5,7 +5,7 @@ author: Evann
 date: 2024-09-13
 ---
 
-This personal website has been built using Astro and I use Markdown for my blog posts. For my [previous article](./2024-08-27_how-I-adapted-pokemon-emerald-to-my-needs) I needed to create a code block that one could copy the content to the clipboard.
+This personal website has been built using Astro and I use Markdown for my blog posts. For my [previous article](/blog/2024-08-27_how-i-adapted-pokemon-emerald-to-my-needs/) I needed to create a code block that one could copy the content to the clipboard.
 Here I will explain how I implemented it to go from this Markdown code:
 
 ````plaintext

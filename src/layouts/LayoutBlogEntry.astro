@@ -1,0 +1,80 @@
+---
+import '../assets/css/app.css';
+
+interface Props {
+	title: string;
+	description: string;
+	date: string;
+	author: string;
+	url: string;
+}
+
+const { url, title, description, date, author } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    
+    <meta name="description" content={description}>
+    <meta name="robots" content="noimageindex">
+    <title>{title}</title>
+
+    <script is:inline defer async src="https://cloud.umami.is/script.js" data-website-id="a26c5f40-65b5-4a99-90c5-0280f3de8fbf" data-domains="ebacala.com"></script>
+    
+    <!-- <link rel="stylesheet" href="/css/app.css"> -->
+    <link rel="canonical" href={url}>
+  
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+
+  <body class="p-6 lg:p-10 bg-primary font-primary">
+    <section class="w-full max-w-screen-md mx-auto space-y-4 md:space-y-6 lg:space-y-8">
+      <a href="/blog/" class="text-base md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
+
+      <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">{title}</h1>
+      <h2 class="text-base md:text-lg lg:text-xl italic">Published {date}.</h2>
+
+      <article class="text-base md:text-lg lg:text-xl text-justify space-y-4 indent-5">
+        <slot />
+        <p class="text-base md:text-lg lg:text-xl text-right italic">{author}</p>
+      </article>
+
+      <a href="#" class="text-base md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>
+    </section>
+  </body>
+
+  <script>
+    // Make every <code> line's width set to the maximum line width found
+    document.addEventListener('DOMContentLoaded', () => {
+      const article = document.querySelector('article');
+      if (article) {
+        const preCodes = article.querySelectorAll('pre code');
+        preCodes.forEach((preCode) => {
+          const lines = preCode.querySelectorAll('.line');
+
+          let maxWidth = 0;
+
+          lines.forEach(line => {
+            const width = line.getBoundingClientRect().width;
+            if (width > maxWidth) {
+              maxWidth = width;
+            }
+          });
+          lines.forEach(line => {
+            (line as HTMLElement).style.width = `${maxWidth}px`;
+          });
+        });
+      }
+    });
+  </script>
+</html>
