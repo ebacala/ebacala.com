@@ -103,5 +103,9 @@
     code:not(pre code) {
       @apply text-xs md:text-sm lg:text-base bg-gray-300 py-1 px-2 rounded-md;
     }
+
+    blockquote {
+      @apply border-l-4 border-gray-500 pl-4 italic;
+    }
   }
 }
