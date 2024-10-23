@@ -9,7 +9,7 @@
     font-weight: 400;
     font-display: swap;
     src: local("GaramondLibre"),
-      url("/fonts/GaramondLibre-Regular.otf") format("opentype");
+      url("/fonts/GaramondLibre-Regular.woff2") format("woff2");
   }
 
   @font-face {
@@ -18,7 +18,7 @@
     font-weight: 700;
     font-display: swap;
     src: local("GaramondLibre"),
-      url("/fonts/GaramondLibre-Bold.otf") format("opentype");
+      url("/fonts/GaramondLibre-Bold.woff2") format("woff2");
   }
 
   @font-face {
@@ -27,7 +27,7 @@
     font-weight: 400;
     font-display: swap;
     src: local("GaramondLibre"),
-      url("/fonts/GaramondLibre-Italic.otf") format("opentype");
+      url("/fonts/GaramondLibre-Italic.woff2") format("woff2");
   }
 
   article {
