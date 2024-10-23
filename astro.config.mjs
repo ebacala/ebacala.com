@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import subfont from "@ernxst/subfont/astro";
 
 import { h } from "hastscript";
 
@@ -112,7 +113,7 @@ export default defineConfig({
   site: "https://ebacala.com",
   integrations: [sitemap(), tailwind({
     applyBaseStyles: false,
-  })],
+  }), subfont()],
   trailingSlash: "always",
   markdown: {
     shikiConfig: {
