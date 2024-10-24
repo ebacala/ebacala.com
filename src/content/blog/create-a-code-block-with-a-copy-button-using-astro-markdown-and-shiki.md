@@ -1,5 +1,5 @@
 ---
-title: Create a code block with a copy button using Astro, Markdown and Shiki
+title: How to create a copyable code block using Astro, Markdown and Shiki?
 description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
 date: 2024-09-13
@@ -42,7 +42,7 @@ RUN ./install.sh /pokeemerald
 
 ## Theme and code highlighting
 
-Like stated in their documentation, Astro uses [Shiki](https://shiki.style) under the hood to do code highlighting. Shiki supports a wide range of languages and has multiple available [themes](https://shiki.style/themes). The first thing to do is to decide which one you're gonna use. I chose the _Dracula_ theme. To use it in Astro, you need to add some configuration to the `astro.config.mjs` file:
+Like stated in their documentation, Astro uses [Shiki](https://shiki.style) under the hood to do code highlighting. Shiki supports a wide range of languages and has multiple available [themes](https://shiki.style/themes). The first thing to do is to decide which one you're gonna use. I chose the Dracula theme. To use it in Astro, you need to add some configuration to the `astro.config.mjs` file:
 
 ```js title=astro.config.mjs copy=true
 export default defineConfig({
@@ -384,7 +384,7 @@ article pre code {
 
 You might notice that some of the lines highlighted with the notation diff are not highlighted till the end of the code container. This is because of the HTML structure of the generated syntax highlighted code. A simple script can fix this. You can add it to your Astro layout file (client-side):
 
-(<u>**Note**</u>: you don't need this script if you enabled code wrapping in your Shiki configuration.)
+(<u>Note</u>: you don't need this script if you enabled code wrapping in your Shiki configuration.)
 
 ```js copy=true
 <script>

@@ -1,22 +1,22 @@
 ---
-title: Add shortcuts to switch spaces on macOS
-description: How to add shortcuts to switch between macOS spaces.
+title: How to add shortcuts to switch between macOS spaces?
+description: How to add shortcuts to switch between macOS spaces?
 author: Evann
 date: 2024-10-13
 ---
 
 ## Introduction
 
-One day, when I had some time to spare, I decided to install *Arch Linux* on a computer I had laying around. I wanted to experiment with *i3* and customize it to my needs.
+One day, when I had some time to spare, I decided to install Arch Linux on a computer I had laying around. I wanted to experiment with i3 and customize it to my needs.
 After a lot of documentation reading and a lot (like a LOT) of trial and error, I was satisfied with my desktop environment. One thing I really enjoyed back then was the ability the instantly switch between workspaces (I used the `Mod + [1-9]` keybinds to switch between them).
 
-When I got back to *macOS*, I really missed this feature. Though I could manually create a space (or virtual desktop, workspace, whatever you want to call it) and move between them using the trackpad gestures (a 3-finger swipe to the left or right), it was not as efficient as being able to use a keybind to switch between them.
+When I got back to macOS, I really missed this feature. Though I could manually create a space (or virtual desktop, workspace, whatever you want to call it) and move between them using the trackpad gestures (a 3-finger swipe to the left or right), it was not as efficient as being able to use a keybind to switch between them.
 
 So I looked for a way to add this feature to my Mac. After a bit of research, I found out that I could use [Hammerspoon](https://www.hammerspoon.org/) to create custom keybinds. This is how Hammerspoon is described on their website:
 
 > This is a tool for powerful automation of macOS. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine. What gives Hammerspoon its power is a set of extensions that expose specific pieces of system functionality, to the user.
 
-You can either download the app on their [github release page](https://github.com/Hammerspoon/hammerspoon/releases) or install it with *Homebrew* (`brew install --cask hammerspoon`).
+You can either download the app on their [github release page](https://github.com/Hammerspoon/hammerspoon/releases) or install it with Homebrew (`brew install --cask hammerspoon`).
 
 What I want is quite straightforward: I want to be able to press `Cmd + [1-9]` to switch between my different spaces. I planned this feature in steps:
 
@@ -69,7 +69,7 @@ First I used the `hs.spaces.missionControlSpaceNames()` method which returns a t
 }
 ```
 
-It's a table using the screens identifier as keys. Each key links to another table containing the space IDs as keys and the space names as values. Unfortunately the spaces are not ordered. So I had to order them myself. This is what I came up with (it might not be super optimized but I did it quickly thanks to Google and Claude ¯\\_(ツ)_/¯ ):
+It's a table using the screens identifier as keys. Each key links to another table containing the space IDs as keys and the space names as values. Unfortunately the spaces are not ordered. So I had to order them myself. This is what I came up with (it might not be super optimized but I did it quickly thanks to Google and Claude 🤷‍♂️):
 
 ```lua copy=true
 function getSortedSpacesIdArray()
@@ -162,11 +162,11 @@ end)
 
 A simple but effective way to bind each key to the corresponding index in the `spacesArray`.
 
-**/!\\** Please note that I use an AZERTY keyboard, so the bindings will need to be changed on other layouts.
+⚠ Please note that I use an AZERTY keyboard, so the bindings will need to be changed on other layouts.
 
 ## Conclusion
 
-This was a simple way to add the feature I wanted to my Mac. I now have a fast way to switch between my different workspaces. The only drawbacks is that during the switch there is some animation playing. This is due to the fact that *MacOS* does not allow you to switch between spaces without any animation. The only way to remove them is to turn on the *Reduce motion* option in the *Accessibility* settings, but this will have an impact on all animations in the system.
+This was a simple way to add the feature I wanted to my Mac. I now have a fast way to switch between my different workspaces. The only drawbacks is that during the switch there is some animation playing. This is due to the fact that macOS does not allow you to switch between spaces without any animation. The only way to remove them is to turn on the "Reduce motion" option in the "Accessibility" settings, but this will have an impact on all animations in the system.
 
 I hope you enjoyed this article, here's the whole script if you want to copy it:
 

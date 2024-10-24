@@ -178,17 +178,17 @@ You can see that I also changed the price the Ethers and Elixirs are sold for. I
 ...
 ```
 
-A little fun fact is that this file sets the Master Ball price to 0, making it quite literally *priceless* and so unsellable.
+A little fun fact is that this file sets the Master Ball price to 0, making it quite literally priceless and so unsellable.
 
 ### Trade with myself
 
-Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/threads/simple-modifications-directory.416647/page-9#post-10215480) provided a great way to achieve this. Kudos to them!
+Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [TheMaxan on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480) provided a great way to achieve this. Kudos to them!
 
 The first step is to find an NPC (non-playable character) that is not crucial for the game story completion. I chose the "Fat Man" (that's not me, it is how he's called in the source code 🤷‍♂️) in Littleroot Town.
 
 ![Fat Man in Littleroot Town](../../assets/blog/2024-08-27_how-I-adapted-pokemon-emerald-to-my-needs/fat-man.png)
 
-Now we have to change its dialog script to make him ask me if I want to trade with myself using the script written by [*TheMaxan* on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480).
+Now we have to change its dialog script to make him ask me if I want to trade with myself using the script written by [TheMaxan on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480).
 
 ```c title=data/maps/LittlerootTown/scripts.inc
 LittlerootTown_EventScript_FatMan::
@@ -223,7 +223,7 @@ I didn't include the other scripts that are part of the self-trade, these ones h
 special ChoosePartyMon
 ```
 
-The `ChoosePartyMon` function is a special macro that loads the screen asking the player to choose a Pokémon in their team. It returns the index of the Pokémon they chose in the `VAR_0x8004` buffer adress. If they didn't choose any Pokémon (*ie:* exited the screen), it will return `255`.
+The `ChoosePartyMon` function is a special macro that loads the screen asking the player to choose a Pokémon in their team. It returns the index of the Pokémon they chose in the `VAR_0x8004` buffer adress. If they didn't choose any Pokémon (ie: exited the screen), it will return `255`.
 
 ```c
 compare VAR_0x8004, 255
