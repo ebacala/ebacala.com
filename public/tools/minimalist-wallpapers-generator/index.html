@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Wallpapers</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Minimalist wallpapers generator</h1>
+    </header>
+
+    <main x-data="miniWallpapers">
+      <div id="controlsColumn">
+        <div id="controlsContainer">
+          <div id="tabsContainer">
+            <button
+              @click="activeTab = 'general'"
+              class="tab-button"
+              :class="{ active: activeTab === 'general' }"
+            >
+              General
+            </button>
+            <button
+              @click="activeTab = 'text'"
+              class="tab-button"
+              :class="{ active: activeTab === 'text' }"
+            >
+              Text
+            </button>
+            <button
+              @click="activeTab = 'lines'"
+              class="tab-button"
+              :class="{ active: activeTab === 'lines' }"
+            >
+              Lines
+            </button>
+            <button
+              @click="activeTab = 'linesEnds'"
+              class="tab-button"
+              :class="{ active: activeTab === 'linesEnds' }"
+            >
+              Lines ends
+            </button>
+          </div>
+
+          <hr />
+
+          <div class="tab" x-show="activeTab === 'general'">
+            <div id="deviceSelectContainer" class="input-group">
+              <label for="deviceSelect">Device size</label>
+              <select id="deviceSelect" x-model="deviceSelect">
+                <option value="custom">Custom</option>
+                <option value="640x1136">iPhone 4/5 (640x1136)</option>
+                <option value="750x1334">iPhone 6/7/8 (750x1334)</option>
+                <option value="1080x1920">iPhone 6/7/8 Plus (1080x1920)</option>
+                <option value="1125x2436">iPhone X/XS/11 Pro (1125x2436)</option>
+                <option value="1242x2688">iPhone XS Max/11 Pro Max (1242x2688)</option>
+                <option value="1170x2532">iPhone 12/13/14 (1170x2532)</option>
+                <option value="1284x2778">iPhone 12/13/14 Pro Max (1284x2778)</option>
+                <option value="1290x2796">iPhone 15 Pro Max (1290x2796)</option>
+                <option value="2560x1600">MacBook Air 13" (2560x1600)</option>
+                <option value="3024x1964">MacBook Pro 14" (3024x1964)</option>
+                <option value="3456x2234">MacBook Pro 16" (3456x2234)</option>
+              </select>
+            </div>
+
+            <div class="input-group" x-show="deviceSelect === 'custom'">
+              <label for="customWidth">Width</label>
+              <input
+                type="text"
+                id="customWidth"
+                inputmode="numeric"
+                x-model.number="svgProperties.canvasWidth"
+              />
+            </div>
+
+            <div class="input-group" x-show="deviceSelect === 'custom'">
+              <label for="customHeight">Height</label>
+              <input
+                type="text"
+                id="customHeight"
+                inputmode="numeric"
+                x-model.number="svgProperties.canvasHeight"
+              />
+            </div>
+
+            <div class="input-group-inline">
+              <label for="inputBackgroundColor">Background color</label>
+              <input
+                type="color"
+                id="inputBackgroundColor"
+                x-model="svgProperties.canvasBackgroundColor"
+              />
+            </div>
+          </div>
+
+          <div class="tab" x-show="activeTab === 'text'">
+            <div class="input-group">
+              <label for="inputText">Text content</label>
+              <input
+                type="text"
+                id="inputText"
+                placeholder="Enter text here"
+                x-model="svgProperties.canvasText"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="inputTextFontFamily">Text font family</label>
+              <select id="inputTextFontFamily" x-model="svgProperties.canvasTextFontFamily">
+                <option value="Arial">Arial (sans-serif)</option>
+                <option value="Verdana">Verdana (sans-serif)</option>
+                <option value="Tahoma">Tahoma (sans-serif)</option>
+                <option value="Trebuchet MS">Trebuchet MS (sans-serif)</option>
+                <option value="Times New Roman">Times New Roman (serif)</option>
+                <option value="Georgia">Georgia (serif)</option>
+                <option value="Garamond">Garamond (serif)</option>
+                <option value="Courier New">Courier New (monospace)</option>
+                <option value="Brush Script MT">Brush Script MT (cursive)</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="inputTextFontSize">Text font size</label>
+              <input
+                type="range"
+                id="inputTextFontSize"
+                min="10"
+                max="100"
+                step="1"
+                x-model.number="svgProperties.canvasTextFontSize"
+              />
+            </div>
+
+            <div class="input-group-inline">
+              <span>Font style</span>
+              <div id="fontStyleOptions">
+                <label
+                  for="inputTextFontStyleBold"
+                  style="font-weight: bold"
+                  :class="{ active: svgProperties.canvasTextFontIsBold }"
+                  >B</label
+                >
+                <input
+                  type="checkbox"
+                  id="inputTextFontStyleBold"
+                  x-model.boolean="svgProperties.canvasTextFontIsBold"
+                />
+
+                <label
+                  for="inputTextFontStyleItalic"
+                  style="font-style: italic"
+                  :class="{ active: svgProperties.canvasTextFontIsItalic }"
+                  >I</label
+                >
+                <input
+                  type="checkbox"
+                  id="inputTextFontStyleItalic"
+                  x-model.boolean="svgProperties.canvasTextFontIsItalic"
+                />
+
+                <label
+                  for="inputTextFontStyleUnderline"
+                  style="text-decoration: underline"
+                  :class="{ active: svgProperties.canvasTextFontIsUnderline }"
+                  >U</label
+                >
+                <input
+                  type="checkbox"
+                  id="inputTextFontStyleUnderline"
+                  x-model.boolean="svgProperties.canvasTextFontIsUnderline"
+                />
+
+                <input
+                  type="checkbox"
+                  id="inputTextFontStyleStrikethrough"
+                  x-model.boolean="svgProperties.canvasTextFontIsStrikethrough"
+                />
+                <label
+                  for="inputTextFontStyleStrikethrough"
+                  style="text-decoration: line-through"
+                  :class="{ active: svgProperties.canvasTextFontIsStrikethrough }"
+                  >Strikethrough</label
+                >
+              </div>
+            </div>
+
+            <div class="input-group-inline">
+              <label for="inputTextFontColor">Font color</label>
+              <input
+                type="color"
+                id="inputTextFontColor"
+                x-model="svgProperties.canvasTextFontColor"
+              />
+            </div>
+          </div>
+
+          <div class="tab" x-show="activeTab === 'lines'">
+            <div class="input-group">
+              <label for="linesNumber"
+                >Number of lines: <span x-text="svgProperties.linesNumber"></span
+              ></label>
+              <input
+                type="range"
+                id="linesNumber"
+                min="1"
+                max="35"
+                step="2"
+                x-model.number="svgProperties.linesNumber"
+              />
+            </div>
+
+            <div class="input-group-inline">
+              <label for="inputLinesColor">Lines color</label>
+              <input type="color" id="inputLinesColor" x-model="svgProperties.linesColor" />
+            </div>
+
+            <div class="input-group">
+              <label for="linesHeight">Lines height</label>
+              <input
+                type="range"
+                id="linesHeight"
+                min="1"
+                max="45"
+                x-model.number="svgProperties.linesHeight"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="linesSpacing">Lines spacing</label>
+              <input
+                type="range"
+                id="linesSpacing"
+                min="1"
+                max="49"
+                x-model.number="svgProperties.linesSpacing"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="linesWidth">Lines width</label>
+              <input
+                type="range"
+                id="linesWidth"
+                min="1"
+                max="10"
+                step="0.1"
+                x-model.number="svgProperties.linesWidth"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="linesPyramidalShape">Pyramidal shape</label>
+              <input
+                type="range"
+                id="linesPyramidalShape"
+                min="-100"
+                max="100"
+                x-model.number="svgProperties.linesPyramidalShape"
+              />
+            </div>
+          </div>
+
+          <div class="tab" x-show="activeTab === 'linesEnds'">
+            <div class="input-group">
+              <label for="linesEndsType">Lines ends type</label>
+              <select id="linesEndsType" x-model="svgProperties.linesEndsType">
+                <option value="none">None</option>
+                <option value="arrow">Arrow</option>
+                <option value="reverseArrow">Reverse arrow</option>
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+              </select>
+            </div>
+
+            <div class="input-group-inline">
+              <label for="inputLinesEndsColor">Lines ends color</label>
+              <input type="color" id="inputLinesEndsColor" x-model="svgProperties.linesEndsColor" />
+            </div>
+
+            <div class="input-group">
+              <label for="linesEndsWidth">Lines ends width</label>
+              <input
+                type="range"
+                id="linesEndsWidth"
+                min="1"
+                max="10"
+                step="0.1"
+                x-model.number="svgProperties.linesEndsWidth"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="linesEndsSize">Lines ends size</label>
+              <input
+                type="range"
+                id="linesEndsSize"
+                min="0.1"
+                max="3"
+                step="0.1"
+                x-model.number="svgProperties.linesEndsSize"
+              />
+            </div>
+
+            <div
+              class="input-group"
+              x-show="svgProperties.linesEndsType === 'arrow' || svgProperties.linesEndsType === 'reverseArrow'"
+            >
+              <label for="linesEndsStrokeLinecap">Lines ends stroke linecap</label>
+              <select id="linesEndsStrokeLinecap" x-model="svgProperties.linesEndsStrokeLinecap">
+                <option value="butt">Butt</option>
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+              </select>
+            </div>
+
+            <div
+              class="input-group"
+              x-show="svgProperties.linesEndsType === 'arrow' || svgProperties.linesEndsType === 'reverseArrow'"
+            >
+              <label for="linesEndsStrokeLinejoin">Lines ends stroke linejoin</label>
+              <select id="linesEndsStrokeLinejoin" x-model="svgProperties.linesEndsStrokeLinejoin">
+                <option value="arcs">Arcs</option>
+                <option value="miter">Miter</option>
+                <option value="miter-clip">Miter clip</option>
+                <option value="round">Round</option>
+                <option value="bevel">Bevel</option>
+              </select>
+            </div>
+
+            <div class="input-group" x-show="svgProperties.linesEndsType.includes('square')">
+              <label for="linesEndsStrokeLinecap">Square corner radius</label>
+              <input
+                type="range"
+                id="linesEndsSquareCornerRadius"
+                min="0"
+                max="10"
+                x-model.number="svgProperties.linesEndsSquareCornerRadius"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="downloadContainer">
+          <button id="downloadButton" @click="downloadAsPNG">Download as PNG</button>
+        </div>
+      </div>
+
+      <div id="canvasContainer"></div>
+    </main>
+
+    <script defer src="./alpine.js"></script>
+
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("miniWallpapers", () => ({
+          // Tabs
+          tabs: ["general", "text", "lines", "linesEnds"],
+          activeTab: "general",
+
+          // General
+          deviceSelect: "640x1136",
+
+          svgProperties: {
+            // General
+            canvasHeight: 1136,
+            canvasWidth: 640,
+            canvasBackgroundColor: "#ffffff",
+
+            // Text
+            canvasText: "lorem",
+            canvasTextFontFamily: "Courier New",
+            canvasTextFontColor: "#000000",
+            canvasTextFontSize: 16,
+            canvasTextFontIsBold: false,
+            canvasTextFontIsItalic: false,
+            canvasTextFontIsUnderline: false,
+            canvasTextFontIsStrikethrough: false,
+
+            // Lines
+            linesNumber: 5,
+            linesColor: "#000000",
+            linesHeight: 20,
+            linesSpacing: 20,
+            linesWidth: 2,
+            linesPyramidalShape: 0,
+
+            // Lines ends
+            linesEndsColor: "#000000",
+            linesEndsType: "arrow",
+            linesEndsWidth: 2,
+            linesEndsSize: 1,
+            linesEndsStrokeLinecap: "butt",
+            linesEndsStrokeLinejoin: "miter",
+            linesEndsSquareCornerRadius: 0,
+          },
+
+          calculateShapeXPositionPercentage(shapeIndex) {
+            const farLeftShapeXPositionPercentage = 50 - this.svgProperties.linesSpacing;
+            const farRightShapeXPositionPercentage = 50 + this.svgProperties.linesSpacing;
+            const shapesXPositionSpan =
+              farRightShapeXPositionPercentage - farLeftShapeXPositionPercentage;
+
+            return (
+              farLeftShapeXPositionPercentage +
+              (shapeIndex * shapesXPositionSpan) / (this.svgProperties.linesNumber - 1)
+            );
+          },
+
+          calculateShapeYPositionPercentage(shapeIndex) {
+            const shapeAtTheMiddleIndex = Math.floor(this.svgProperties.linesNumber / 2);
+            const numberOfShapesOnEachSideOfTheMiddleShape = Math.floor(
+              this.svgProperties.linesNumber / 2
+            );
+            const shapeYPositionPercentageRelativeToMiddleOne =
+              100 -
+              (Math.abs(shapeAtTheMiddleIndex - shapeIndex) *
+                this.svgProperties.linesPyramidalShape) /
+                numberOfShapesOnEachSideOfTheMiddleShape;
+            const shapeYPositionPercentage =
+              (this.svgProperties.linesHeight * shapeYPositionPercentageRelativeToMiddleOne) / 100;
+
+            return shapeYPositionPercentage;
+          },
+
+          generateSvgBackground() {
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("width", this.svgProperties.canvasWidth);
+            rect.setAttribute("height", this.svgProperties.canvasHeight);
+            rect.setAttribute("fill", this.svgProperties.canvasBackgroundColor);
+
+            return rect;
+          },
+
+          generateSvgText() {
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("id", "svgTextCenter");
+            text.setAttribute("x", "50%");
+            text.setAttribute("y", "50%");
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("dominant-baseline", "middle");
+            text.setAttribute("font-family", this.svgProperties.canvasTextFontFamily);
+            text.setAttribute("fill", this.svgProperties.canvasTextFontColor);
+            text.setAttribute("font-size", this.svgProperties.canvasTextFontSize);
+
+            if (this.svgProperties.canvasTextFontIsBold) {
+              text.setAttribute("font-weight", "bold");
+            }
+            if (this.svgProperties.canvasTextFontIsItalic) {
+              text.setAttribute("font-style", "italic");
+            }
+            if (this.svgProperties.canvasTextFontIsUnderline) {
+              text.setAttribute("text-decoration", "underline");
+            }
+            if (this.svgProperties.canvasTextFontIsStrikethrough) {
+              text.setAttribute("text-decoration", "line-through");
+            }
+
+            text.textContent = this.svgProperties.canvasText;
+
+            return text;
+          },
+
+          generateSvg() {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("id", "canvas");
+            svg.setAttribute("width", this.svgProperties.canvasWidth);
+            svg.setAttribute("height", this.svgProperties.canvasHeight);
+            svg.setAttribute(
+              "viewBox",
+              `0 0 ${this.svgProperties.canvasWidth} ${this.svgProperties.canvasHeight}`
+            );
+            svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+            svg.appendChild(this.generateSvgBackground());
+            svg.appendChild(this.generateSvgText());
+            svg.appendChild(this.generateLinesEnds());
+            svg.appendChild(this.generateLines());
+
+            document.getElementById("canvasContainer").innerHTML = "";
+            document.getElementById("canvasContainer").appendChild(svg);
+          },
+
+          generateLines() {
+            let topMarkerEnd;
+            let bottomMarkerEnd;
+
+            switch (this.svgProperties.linesEndsType) {
+              case "arrow":
+                topMarkerEnd = "url(#topArrowHead)";
+                bottomMarkerEnd = "url(#bottomArrowHead)";
+                break;
+              case "reverseArrow":
+                topMarkerEnd = "url(#topReverseArrowHead)";
+                bottomMarkerEnd = "url(#bottomReverseArrowHead)";
+                break;
+              case "circle":
+                topMarkerEnd = "url(#topCircle)";
+                bottomMarkerEnd = "url(#bottomCircle)";
+                break;
+              case "square":
+                topMarkerEnd = "url(#topSquare)";
+                bottomMarkerEnd = "url(#bottomSquare)";
+                break;
+              default:
+                topMarkerEnd = "none";
+                bottomMarkerEnd = "none";
+            }
+
+            const linesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("stroke", this.svgProperties.linesColor);
+            line.setAttribute("stroke-width", this.svgProperties.linesWidth);
+
+            if (this.svgProperties.linesNumber === 1) {
+              const topLine = line.cloneNode(true);
+              topLine.setAttribute("x1", "50%");
+              topLine.setAttribute("y1", "0");
+              topLine.setAttribute("x2", "50%");
+              topLine.setAttribute("y2", `${this.svgProperties.linesHeight}%`);
+              topLine.setAttribute("marker-end", topMarkerEnd);
+
+              const bottomLine = line.cloneNode(true);
+              bottomLine.setAttribute("x1", "50%");
+              bottomLine.setAttribute("y1", "100%");
+              bottomLine.setAttribute("x2", "50%");
+              bottomLine.setAttribute("y2", `${100 - this.svgProperties.linesHeight}%`);
+              bottomLine.setAttribute("marker-end", bottomMarkerEnd);
+
+              linesGroup.appendChild(topLine);
+              linesGroup.appendChild(bottomLine);
+            } else {
+              for (let i = 0; i < this.svgProperties.linesNumber; i++) {
+                const shapeX = this.calculateShapeXPositionPercentage(i);
+                const shapeY = this.calculateShapeYPositionPercentage(i);
+
+                const topLine = line.cloneNode(true);
+                topLine.setAttribute("x1", `${shapeX}%`);
+                topLine.setAttribute("y1", "0");
+                topLine.setAttribute("x2", `${shapeX}%`);
+                topLine.setAttribute("y2", `${shapeY}%`);
+                topLine.setAttribute("marker-end", topMarkerEnd);
+
+                const bottomLine = line.cloneNode(true);
+                bottomLine.setAttribute("x1", `${shapeX}%`);
+                bottomLine.setAttribute("y1", "100%");
+                bottomLine.setAttribute("x2", `${shapeX}%`);
+                bottomLine.setAttribute("y2", `${100 - shapeY}%`);
+                bottomLine.setAttribute("marker-end", bottomMarkerEnd);
+
+                linesGroup.appendChild(topLine);
+                linesGroup.appendChild(bottomLine);
+              }
+            }
+
+            return linesGroup;
+          },
+
+          generateLinesEnds() {
+            const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+
+            const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+            marker.setAttribute("refX", "10");
+            marker.setAttribute("refY", "10");
+            marker.setAttribute("markerWidth", 20 * this.svgProperties.linesEndsSize);
+            marker.setAttribute("markerHeight", 20 * this.svgProperties.linesEndsSize);
+            marker.setAttribute("viewBox", `0 0 20 20`);
+            marker.setAttribute("markerUnits", "userSpaceOnUse");
+
+            // Arrow head
+            const arrowHeadMarker = marker.cloneNode(true);
+            const arrowHeadPolyline = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "polyline"
+            );
+            arrowHeadPolyline.setAttribute("points", "5 5, 10 10, 15 5");
+            arrowHeadPolyline.setAttribute("stroke", this.svgProperties.linesEndsColor);
+            arrowHeadPolyline.setAttribute(
+              "stroke-width",
+              this.svgProperties.linesEndsWidth / this.svgProperties.linesEndsSize
+            );
+            arrowHeadPolyline.setAttribute("fill", "none");
+            arrowHeadPolyline.setAttribute(
+              "stroke-linejoin",
+              this.svgProperties.linesEndsStrokeLinejoin
+            );
+            arrowHeadPolyline.setAttribute(
+              "stroke-linecap",
+              this.svgProperties.linesEndsStrokeLinecap
+            );
+            arrowHeadMarker.appendChild(arrowHeadPolyline);
+
+            const topArrowHead = arrowHeadMarker.cloneNode(true);
+            topArrowHead.setAttribute("id", "topArrowHead");
+            topArrowHead.setAttribute("orient", "0");
+
+            const bottomArrowHead = arrowHeadMarker.cloneNode(true);
+            bottomArrowHead.setAttribute("id", "bottomArrowHead");
+            bottomArrowHead.setAttribute("orient", "180");
+
+            const topReverseArrowHead = arrowHeadMarker.cloneNode(true);
+            topReverseArrowHead.setAttribute("id", "topReverseArrowHead");
+            topReverseArrowHead.setAttribute("orient", "180");
+
+            const bottomReverseArrowHead = arrowHeadMarker.cloneNode(true);
+            bottomReverseArrowHead.setAttribute("id", "bottomReverseArrowHead");
+            bottomReverseArrowHead.setAttribute("orient", "0");
+
+            // Circle
+            const circleMarker = marker.cloneNode(true);
+            circleMarker.setAttribute("id", "circle");
+            circleMarker.setAttribute("refX", "10");
+            circleMarker.setAttribute("refY", "6");
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", "10");
+            circle.setAttribute("cy", "12");
+            circle.setAttribute("r", "6");
+            circle.setAttribute("stroke", this.svgProperties.linesEndsColor);
+            circle.setAttribute(
+              "stroke-width",
+              this.svgProperties.linesEndsWidth / this.svgProperties.linesEndsSize
+            );
+            circle.setAttribute("fill", "none");
+            circleMarker.appendChild(circle);
+
+            const topCircle = circleMarker.cloneNode(true);
+            topCircle.setAttribute("id", "topCircle");
+            topCircle.setAttribute("orient", "0");
+
+            const bottomCircle = circleMarker.cloneNode(true);
+            bottomCircle.setAttribute("id", "bottomCircle");
+            bottomCircle.setAttribute("orient", "180");
+
+            // Square
+            const squareMarker = marker.cloneNode(true);
+            squareMarker.setAttribute("id", "square");
+            squareMarker.setAttribute("refX", "10");
+            squareMarker.setAttribute("refY", "2");
+            const square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            square.setAttribute("x", "2");
+            square.setAttribute("y", "2");
+            square.setAttribute("rx", this.svgProperties.linesEndsSquareCornerRadius);
+            square.setAttribute("ry", this.svgProperties.linesEndsSquareCornerRadius);
+            square.setAttribute("width", "16");
+            square.setAttribute("height", "16");
+            square.setAttribute("stroke", this.svgProperties.linesEndsColor);
+            square.setAttribute(
+              "stroke-width",
+              this.svgProperties.linesEndsWidth / this.svgProperties.linesEndsSize
+            );
+            square.setAttribute("fill", "none");
+            squareMarker.appendChild(square);
+
+            const topSquare = squareMarker.cloneNode(true);
+            topSquare.setAttribute("id", "topSquare");
+            topSquare.setAttribute("orient", "0");
+
+            const bottomSquare = squareMarker.cloneNode(true);
+            bottomSquare.setAttribute("id", "bottomSquare");
+            bottomSquare.setAttribute("orient", "180");
+
+            defs.appendChild(topArrowHead);
+            defs.appendChild(bottomArrowHead);
+            defs.appendChild(topReverseArrowHead);
+            defs.appendChild(bottomReverseArrowHead);
+            defs.appendChild(topCircle);
+            defs.appendChild(bottomCircle);
+            defs.appendChild(topSquare);
+            defs.appendChild(bottomSquare);
+
+            return defs;
+          },
+
+          debouncedUpdateUrl() {
+            if (this.urlUpdateTimeout) {
+              clearTimeout(this.urlUpdateTimeout);
+            }
+            this.urlUpdateTimeout = setTimeout(() => {
+              const params = new URLSearchParams(this.svgProperties).toString();
+              window.history.pushState({}, "", `?${params}`);
+            }, 500);
+          },
+
+          refreshSvgPropertiesTypes() {
+            const typeMapping = {
+              // Number properties
+              canvasWidth: Number,
+              canvasHeight: Number,
+              canvasTextFontSize: Number,
+              linesNumber: Number,
+              linesHeight: Number,
+              linesSpacing: Number,
+              linesWidth: Number,
+              linesPyramidalShape: Number,
+              linesEndsWidth: Number,
+              linesEndsSize: Number,
+              linesEndsSquareCornerRadius: Number,
+              
+              // Boolean properties
+              canvasTextFontIsBold: (val) => JSON.parse(val),
+              canvasTextFontIsItalic: (val) => JSON.parse(val),
+              canvasTextFontIsUnderline: (val) => JSON.parse(val),
+              canvasTextFontIsStrikethrough: (val) => JSON.parse(val),
+            };
+
+            Object.entries(typeMapping).forEach(([key, typeFn]) => {
+              if (key in this.svgProperties) {
+                this.svgProperties[key] = typeFn(this.svgProperties[key]);
+              }
+            });
+          },
+
+          init() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.size > 0) {
+              const paramEntries = Object.fromEntries(params);
+              this.svgProperties = paramEntries;
+              this.refreshSvgPropertiesTypes();
+            }
+
+            this.$watch("deviceSelect", (value) => {
+              if (value === "custom") {
+                return;
+              }
+
+              [this.svgProperties.canvasWidth, this.svgProperties.canvasHeight] = value
+                .split("x")
+                .map(Number);
+            });
+
+            this.$watch("svgProperties", () => {
+              this.debouncedUpdateUrl();
+
+              this.generateSvg();
+            });
+
+            this.generateSvg();
+          },
+
+          downloadAsPNG() {
+            const svg = document.getElementById("canvas");
+            const serializer = new XMLSerializer();
+            const svgStr = serializer.serializeToString(svg);
+
+            // Create a canvas element
+            const canvas = document.createElement("canvas");
+            canvas.width = this.svgProperties.canvasWidth;
+            canvas.height = this.svgProperties.canvasHeight;
+            const ctx = canvas.getContext("2d");
+
+            // Create an image to draw the SVG
+            const img = new Image();
+            img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgStr)));
+
+            img.onload = () => {
+              // Draw the image on the canvas
+              ctx.drawImage(img, 0, 0);
+
+              // Convert canvas to PNG and download
+              const a = document.createElement("a");
+              a.download = "wallpaper.png";
+              a.href = canvas.toDataURL("image/png");
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            };
+          },
+        }));
+      });
+    </script>
+  </body>
+</html>
