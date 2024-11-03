@@ -111,7 +111,9 @@ const transformerCopyButton = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: "https://ebacala.com",
-  integrations: [sitemap(), tailwind({
+  integrations: [sitemap({
+    customPages: ["https://ebacala.com/tools/minimalist-wallpapers-generator/"],
+  }), tailwind({
     applyBaseStyles: false,
   }), subset()],
   trailingSlash: "always",
