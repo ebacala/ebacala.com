@@ -11,4 +11,4 @@ Now more than ever our attention is constantly sought after and I want to get ri
 
 On social media it’s quite easy to feel the fear of missing out (FOMO), regardless of what your feed look like. That’s why I wanted my phone and laptop wallpapers to have some kind words to try and quiet down my FOMO or just remind me of what's important for me. I also wanted some geometrical shapes to fill them a bit more. That’s how I came up with a small minimalist wallpapers generator. Even though it is quite basic it’s enough for me and I can use it to have numerous wallpapers that meet my needs.
 
-If you want to play with it [here it is](/tools/minimalist-wallpapers-generator/).
+If you want to play with it <a href="/tools/minimalist-wallpapers-generator/" target="_blank">here it is</a>.
