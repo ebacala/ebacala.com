@@ -3,23 +3,32 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 
-const blogEntries = await getCollection('blog');
+import ogImage from "../../assets/og-image/blog.jpeg";
+
+const blogEntries = await getCollection("blog");
 ---
 
-<Layout title="Welcome to my blog or thoughts repository, feel free to roam around." description="In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting.">
-    <section class="mb-8">
-        <h1 class="text-2xl md:text-2xl lg:text-4xl italic text-center">A place for my wandering thoughts...</h1>
-    </section>
+<Layout
+  title="Evann BACALA's personal website and blog"
+  description="In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting."
+  ogImagePath={ogImage.src}
+>
+  <h1 id="blog-title">A place for my wandering thoughts...</h1>
 
-    <section class="w-full max-w-screen-md mx-auto space-y-4 flex flex-col">
-        {
-            blogEntries.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-                 .map(blogEntry => {
-                    const blogEntryDate = new Date(blogEntry.data.date)
-                    const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, '0')}-${blogEntryDate.getDate().toString().padStart(2, '0')}`
+  <section id="blog-entries">
+    {
+      blogEntries
+        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+        .map((blogEntry) => {
+          const blogEntryDate = new Date(blogEntry.data.date);
+          const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, "0")}-${blogEntryDate.getDate().toString().padStart(2, "0")}`;
 
-                    return <a href={`/blog/${blogEntry.slug}/`} class="text-base md:text-lg lg:text-xl hover:underline">({blogEntryDateString}) - {blogEntry.data.title}</a>
-                })
-        }
-    </section>
+          return (
+            <a class="blog-entry" href={`/blog/${blogEntry.slug}/`} class="debug">
+              ({blogEntryDateString}) - {blogEntry.data.title}
+            </a>
+          );
+        })
+    }
+  </section>
 </Layout>

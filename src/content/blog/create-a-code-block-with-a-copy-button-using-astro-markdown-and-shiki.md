@@ -3,6 +3,7 @@ title: How to create a copyable code block using Astro, Markdown and Shiki?
 description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
 date: 2024-09-13
+edited: 2024-11-06
 ---
 
 This personal website has been built using Astro and I use Markdown for my blog posts. For my [previous article](/blog/how-i-adapted-pokemon-emerald-to-my-needs/) I needed to create a code block that one could copy the content to the clipboard.
@@ -18,8 +19,8 @@ RUN git clone https://github.com/pret/agbcc
 
 WORKDIR /agbcc
 
-RUN chmod +x build.sh install.sh // [!code ++]‎ 
-RUN ./build.sh // [!code --]‎ 
+RUN chmod +x build.sh install.sh // [!code ++]‎
+RUN ./build.sh // [!code --]‎
 RUN ./install.sh /pokeemerald
 ```
 ````
@@ -84,12 +85,7 @@ To process Markdown content and generate the HTML that will represent the code b
 A basic HTML structure for a code block looks like this:
 
 ```html
-<pre
-  class="astro-code dracula"
-  style="..."
-  tabindex="0"
-  data-language="dockerfile"
->
+<pre class="astro-code dracula" style="..." tabindex="0" data-language="dockerfile">
     <code>
         <span class="line">
             <span style="color:#FF79C6">FROM</span>
@@ -248,168 +244,65 @@ To show the diff just add `// [!code +]` or `// [!code -]` in the Markdown at th
 Let's add some CSS to style our code blocks (feel free to adjust the spacing, font-size, colors, etc. to your liking):
 
 ```css copy=true
-article pre {
-  position: relative;
+pre {
+  --code-block-background-color: #374151;
+  --code-block-border-radius: 0.375rem;
+  --code-block-font-size: 1rem;
+
+  align-items: flex-start;
+  border-radius: var(--code-block-border-radius);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  border-radius: 0.375rem;
-}
-
-.pre-header {
-  position: sticky;
-  top: 0px;
-  left: 0px;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.pre-title {
-  width: 100%;
-  border-radius: 0.375rem;
-  background-color: #374151;
-  padding: 0.25rem 1rem;
-  text-align: center;
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-@media (min-width: 768px) {
-  .pre-title {
-    font-size: 0.875rem;
-    line-height: 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .pre-title {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-.wrapper-copy-code {
-  display: flex;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
-.copy-code {
-  margin: 0.25rem;
-  border-radius: 0.375rem;
-  padding: 0.25rem 1rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
-
-  &:hover {
-    background-color: #6b7280;
-  }
-}
-
-@media (min-width: 768px) {
-  .copy-code {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .copy-code {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-article pre code {
-  display: block;
-  width: 100%;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  text-indent: 0px;
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-@media (min-width: 768px) {
-  article pre code {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  article pre code {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-.line {
-  display: inline-block;
-  width: auto;
-  min-width: 100%;
-}
-
-.diff.add {
   position: relative;
-  background-color: #166534;
+  width: 100%;
 
-  &:before {
-    content: "+";
-    position: absolute;
-    left: -1rem;
-    color: #22c55e;
-  }
-}
+  & .pre-header {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0px;
+    position: sticky;
+    top: 0px;
+    width: 100%;
 
-.diff.remove {
-  position: relative;
-  background-color: #991b1b;
-  opacity: 0.8;
+    & .pre-title {
+      background-color: var(--code-block-background-color);
+      border-radius: var(--code-block-border-radius);
+      font-size: var(--code-block-font-size);
+      line-height: 1rem;
+      padding: calc(16px * 0.5) calc(16px * 1);
+      text-align: center;
+      width: 100%;
+    }
 
-  &:before {
-    content: "-";
-    position: absolute;
-    left: -1rem;
-    color: #ef4444;
-  }
-}
-```
+    & .wrapper-copy-code {
+      align-items: center;
+      flex-direction: row;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
 
-## Final touch
+      & .copy-code {
+        background-color: transparent;
+        border: none;
+        border-radius: var(--code-block-border-radius);
+        color: #ffffff;
+        font-family: monospace;
+        font-size: var(--code-block-font-size);
+        line-height: 1rem;
+        margin: calc(16px * 0.25);
+        padding: calc(16px * 0.5) calc(16px * 1);
 
-You might notice that some of the lines highlighted with the notation diff are not highlighted till the end of the code container. This is because of the HTML structure of the generated syntax highlighted code. A simple script can fix this. You can add it to your Astro layout file (client-side):
-
-(<u>Note</u>: you don't need this script if you enabled code wrapping in your Shiki configuration.)
-
-```js copy=true
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const article = document.querySelector('article');
-      if (article) {
-        const preCodes = article.querySelectorAll('pre code');
-        preCodes.forEach((preCode) => {
-          const lines = preCode.querySelectorAll('.line');
-
-          let maxWidth = 0;
-
-          lines.forEach(line => {
-            const width = line.getBoundingClientRect().width;
-            if (width > maxWidth) {
-              maxWidth = width;
-            }
-          });
-          lines.forEach(line => {
-            (line as HTMLElement).style.width = `${maxWidth}px`;
-          });
-        });
+        &:hover {
+          background-color: #6b7280;
+          cursor: pointer;
+        }
       }
-    });
-  </script>
+    }
+  }
+}
 ```
 
 ## Conclusion
@@ -430,7 +323,7 @@ RUN ./build.sh // [!code --]
 RUN ./install.sh /pokeemerald
 ```
 
-You don't don't necessarily need to create this much transformers, a single one with all the logic can do the job. I chose to create multiple ones so that each one has a single responsibility. 
+You don't necessarily need to create this much transformers, a single one with all the logic can do the job. I chose to create multiple ones so that each one has a single responsibility.
 
 The useful thing about this approach is that you can show/hide the title and copy button at will by just removing/adding the metadata.
 

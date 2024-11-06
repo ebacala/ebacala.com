@@ -3,69 +3,62 @@ import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 
-import profilePicture from "../assets/img/profile-picture.png"
+import profilePicture from "../assets/img/profile-picture.png";
+import ogImage from "../assets/og-image/about-me.jpeg";
 
-const description = "Welcome to my personal website and blog! Always focusing on delivering high-quality results, I am consistently happy to bring my perspective to the table."
+const description =
+  "Welcome to my personal website! I'm Evann BACALA, a french developer currently based in New Zealand. Get to know a bit about me, my projects and my blog here.";
 
 const socialLinks = [
   {
-    "name": "GitHub",
-    "link": "https://github.com/ebacala",
-    "logo": import("../assets/img/logos/github.png"),
-    "alt": "GitHub account"
+    name: "GitHub",
+    link: "https://github.com/ebacala",
+    logo: import("../assets/img/logos/github.png"),
+    alt: "GitHub account",
   },
   {
-    "name": "X",
-    "link": "https://x.com/ebacala_",
-    "logo": import("../assets/img/logos/x.png"),
-    "alt": "X account"
+    name: "X",
+    link: "https://x.com/ebacala_",
+    logo: import("../assets/img/logos/x.png"),
+    alt: "X account",
   },
   {
-    "name": "LinkedIn",
-    "link": "https://www.linkedin.com/in/evann-bacala-491a70150/",
-    "logo": import("../assets/img/logos/linkedin.webp"),
-    "alt": "LinkedIn account"
-  }
-]
+    name: "LinkedIn",
+    link: "https://www.linkedin.com/in/evann-bacala-491a70150/",
+    logo: import("../assets/img/logos/linkedin.webp"),
+    alt: "LinkedIn account",
+  },
+];
 ---
 
-<Layout title="Evann BACALA's personal website" description={description}>
-  <section class="flex flex-row items-center justify-start space-x-8 lg:space-x-14">
-    <Image
-      loading="eager"
-      class="w-[100px] md:w-[150px] lg:w-[200px] h-auto border rounded-full border-black"
-      src={profilePicture}
-      alt="Evann BACALA"
-    />
+<Layout title="Evann BACALA's personal website and blog" description={description} ogImagePath={ogImage.src}>
+  <section id="summary">
+    <Image id="profile-picture" loading="eager" src={profilePicture} alt="Evann BACALA" />
 
-    <div class="w-full flex flex-row items-center justify-start sm:justify-between flex-wrap sm:flex-nowrap">
-      <h1 class="w-full sm:w-auto text-3xl md:text-5xl lg:text-6xl italic">Hi I'm Evann Bacala</h1>
-    
-      <div class="w-full sm:w-auto flex flex-row items-center justify-start space-x-2">
-        {
-          socialLinks.map((link) => (
-            <a href={link.link} target="_blank" rel="noopener">
-              <Image
-                loading="eager"
-                class="w-[25px] md:w-[30px] lg:w-[40px] h-auto"
-                src={link.logo}
-                alt={link.alt}
-              />
-            </a>
-          ))
-        }
-      </div>
+    <h1>Hi I'm Evann Bacala</h1>
+
+    <div id="social-links">
+      {
+        socialLinks.map((link) => (
+          <a href={link.link} target="_blank" rel="noopener">
+            <Image loading="eager" class="logo" src={link.logo} alt={link.alt} />
+          </a>
+        ))
+      }
     </div>
   </section>
 
-  <section class="text-justify text-lg mt-8 md:mt-10 md:text-2xl lg:mt-20 lg:text-3xl space-y-2 md:space-y-5 lg:space-y-8">
+  <section id="presentation">
     <p>
-      My tech journey began in 2016 with a 2-year computer science program, 
-      followed by a 3-year work-study program alternating between school and real-world projects, 
-      primarily for the French national health system.
+      My tech journey began in 2016 with a 2-year computer science program, followed by a 3-year
+      work-study program alternating between school and real-world projects, primarily for the
+      French national health system. Since 2022, I've been continuously expanding my technical and
+      soft skills through new technologies and tools.
     </p>
-    <p>Since 2022, I've been continuously expanding my technical and soft skills through new technologies and tools.</p>
-    <p>Always focusing on delivering <strong class="underline italic font-normal">high-quality results</strong>, I am consistently happy to bring my perspective to the table.</p>
-    <p>Currently in New Zealand for a working-holiday visa, I am keeping a foot in programming and software development along with <a href="/blog/" class="underline italic font-normal">writing some stuff</a> I find interesting on this personal website.</p>
+    <p>
+      Currently in New Zealand for a working-holiday visa, I am keeping a foot in programming and
+      software development along with <a href="/blog/">writing some stuff</a> I find interesting on this
+      personal website.
+    </p>
   </section>
 </Layout>

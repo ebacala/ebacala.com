@@ -1,90 +1,72 @@
 ---
-import '../assets/css/app.css';
-
-import ogImage from "../assets/img/blog-og-image.png";
+import "../assets/css/main.css";
+import ogImageDefault from "../assets/og-image/blog.jpeg";
 
 interface Props {
-	title: string;
-	description: string;
-	date: string;
-	author: string;
-	url: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  url: string;
+  edited?: string;
 }
 
-const { url, title, description, date, author } = Astro.props;
+const { url, title, description, date, author, edited } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
-    
-    <meta name="description" content={description}>
-    <meta name="robots" content="noimageindex">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="description" content={description} />
+    <meta name="robots" content="noimageindex" />
     <title>{title}</title>
-    
-    <link rel="canonical" href={url}>
-  
-    <link rel="icon" type="image/png" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="canonical" href={url} />
+
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:url" content={url}>
-    <meta property="og:image" content={ogImage.src}>
-    <meta property="og:type" content="article">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImageDefault.src} />
+    <meta property="og:type" content="article" />
 
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:url" content={url}>
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:card" content="summary" />
   </head>
 
-  <body class="p-6 lg:p-10 bg-primary font-primary">
-    <section class="w-full max-w-screen-md mx-auto space-y-4 md:space-y-6 lg:space-y-8">
-      <a href="/blog/" class="text-base md:text-lg lg:text-xl text-center italic block">&larr; Back</a>
+  <body>
+    <header>
+      <nav>
+        <a href="/">About me</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+      <hr />
+    </header>
 
-      <h1 class="text-3xl md:text-5xl lg:text-6xl italic text-center">{title}</h1>
-      <h2 class="text-base md:text-lg lg:text-xl italic">Published {date}.</h2>
+    <section id="blog-article">
+      <h1>{title}</h1>
+      <h2 id="blog-article-publish-date">Published {date}.</h2>
+      {edited && <h2 id="blog-article-edited-date">Last edited {edited}.</h2>}
 
-      <article class="text-base md:text-lg lg:text-xl text-justify space-y-4 indent-5">
+      <article>
         <slot />
-        <p class="text-base md:text-lg lg:text-xl text-right italic">{author}</p>
+        <p id="blog-article-author">{author}</p>
       </article>
 
-      <a href="#" class="text-base md:text-lg lg:text-xl text-center italic block">&uarr; Back to top</a>
+      <a href="#" id="blog-article-back-to-top">&uarr; Back to top</a>
     </section>
   </body>
-
-  <script>
-    // Make every <code> line's width set to the maximum line width found
-    document.addEventListener('DOMContentLoaded', () => {
-      const article = document.querySelector('article');
-      if (article) {
-        const preCodes = article.querySelectorAll('pre code');
-        preCodes.forEach((preCode) => {
-          const lines = preCode.querySelectorAll('.line');
-
-          let maxWidth = 0;
-
-          lines.forEach(line => {
-            const width = line.getBoundingClientRect().width;
-            if (width > maxWidth) {
-              maxWidth = width;
-            }
-          });
-          lines.forEach(line => {
-            (line as HTMLElement).style.width = `${maxWidth}px`;
-          });
-        });
-      }
-    });
-  </script>
 </html>

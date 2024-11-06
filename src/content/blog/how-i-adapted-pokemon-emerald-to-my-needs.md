@@ -3,6 +3,7 @@ title: How I adapted Pokémon Emerald to my needs?
 description: The story of how I found out I could adapt Pokémon Emerald to my needs and how I changed a few things to make the game more enjoyable for me.
 author: Evann
 date: 2024-08-27
+edited: 2024-11-06
 ---
 
 ## Introduction
@@ -15,13 +16,13 @@ Recently I started once again a new game, this time on an emulator so that I did
 
 These are only a few things that bothered me, the more I kept playing the more I found little things that could be improved for a either a better game experience or a better game logic.
 
-A year or so ago, I watched a YouTube video about how a guy modified the game so that it had the first Pokémon of its team follow him like in Pokémon Heartgold and Soulsilver (for the curious it was [this video](https://www.youtube.com/watch?v=2tpBooD_X7k&pp=ygUicG9rZW1vbiBlbWVyYWxkIHBva2Vtb24gZm9sbG93IHlvdQ%3D%3D)). Naturally, being a developer I thought "if this guy did it, why can't I adapt the game to my needs?". And that is exactly what I did, I resolved my frustations one at a time.
+A year or so ago, I watched a YouTube video about how a guy modified the game so that it had the first Pokémon of its team follow him like in Pokémon Heartgold and Soulsilver (for the curious it was <a href="https://www.youtube.com/watch?v=2tpBooD_X7k&pp=ygUicG9rZW1vbiBlbWVyYWxkIHBva2Vtb24gZm9sbG93IHlvdQ%3D%3D" target="_blank">this video</a>). Naturally, being a developer I thought "if this guy did it, why can't I adapt the game to my needs?". And that is exactly what I did, I resolved my frustations one at a time.
 
 ## Setting up the project
 
-Thanks to the [team Pret guys](https://pret.github.io), Pokémon Emerald has been decompiled and put on GitHub in [this repository](https://github.com/pret/pokeemerald?tab=readme-ov-file). I just had to fork the project and set it up on my computer to be ready to change the game. Their installation documentation is quite thorough, I just created a script and a Docker compose file to be up and running more efficiently (and be more OS-agnostic)
+Thanks to the <a href="https://pret.github.io" target="_blank">team Pret guys</a>, Pokémon Emerald has been decompiled and put on Github in <a href="https://github.com/pret/pokeemerald" target="_blank">this repository</a>. I just had to fork the project and set it up on my computer to be ready to change the game. Their installation documentation is quite thorough, I just created a script and a Docker compose file to be up and running more efficiently (and be more OS-agnostic)
 
-If you want to do the same thing you can clone the [repository](https://github.com/pret/pokeemerald?tab=readme-ov-file) and create a few files in the base folder:
+If you want to do the same thing you can clone the <a href="https://github.com/pret/pokeemerald" target="_blank">repository</a> and create a few files in the base folder:
 
 ```dockerfile title=Dockerfile copy=true
 FROM debian:12-slim
@@ -182,13 +183,13 @@ A little fun fact is that this file sets the Master Ball price to 0, making it q
 
 ### Trade with myself
 
-Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. [TheMaxan on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480) provided a great way to achieve this. Kudos to them!
+Growing up, I never traded Pokémons to get some of them to evolve so I never completed the Pokédex. And now in 2024, good luck finding someone to trade with. The solution to that is simple: finding a way to trade with myself. It is a bit harder to implement though. <a href="https://www.pokecommunity.com/goto/post?id=10215480" target="_blank">TheMaxan on pokecommunity.com</a> provided a great way to achieve this. Kudos to them!
 
 The first step is to find an NPC (non-playable character) that is not crucial for the game story completion. I chose the "Fat Man" (that's not me, it is how he's called in the source code 🤷‍♂️) in Littleroot Town.
 
 ![Fat Man in Littleroot Town](../../assets/blog/2024-08-27_how-I-adapted-pokemon-emerald-to-my-needs/fat-man.png)
 
-Now we have to change its dialog script to make him ask me if I want to trade with myself using the script written by [TheMaxan on pokecommunity.com](https://www.pokecommunity.com/goto/post?id=10215480).
+Now we have to change its dialog script to make him ask me if I want to trade with myself using the script written by TheMaxan.
 
 ```c title=data/maps/LittlerootTown/scripts.inc
 LittlerootTown_EventScript_FatMan::

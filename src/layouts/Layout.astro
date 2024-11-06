@@ -1,55 +1,60 @@
 ---
-import '../assets/css/app.css';
-import ogImage from "../assets/img/og-image.png"
+import "../assets/css/main.css";
+import ogImageDefault from "../assets/og-image/about-me.jpeg";
+
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
+  ogImagePath?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImagePath } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const url = canonicalUrl.href;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
-    
-    <meta name="description" content={description}>
-    <meta name="robots" content="noimageindex">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="description" content={description} />
+    <meta name="robots" content="noimageindex" />
     <title>{title}</title>
-  
-    <link rel="canonical" href={url}>
-    <link rel="icon" type="image/png" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
 
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:url" content={url}>
-    <meta property="og:image" content={ogImage.src}>
-    <meta property="og:type" content="website">
+    <link rel="canonical" href={url} />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:url" content={url}>
-    <meta name="twitter:card" content="summary">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImagePath ?? ogImageDefault.src} />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:card" content="summary" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
 
-  <body class="p-6 lg:p-10 bg-primary font-primary">
-	  <slot></slot>
+  <body>
+    <header>
+      <nav>
+        <a href="/">About me</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+      <hr />
+    </header>
 
-    <nav class="w-full flex flex-row items-center justify-end space-x-8 text-lg md:text-2xl lg:text-3xl fixed bottom-0 right-0 py-1 pr-2 bg-primary ">
-      <a href="/" class="hover:underline">About Me</a>
-      <a href="/blog/" class="hover:underline">Blog</a>
-    </nav>
+    <slot />
   </body>
 </html>

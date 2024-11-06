@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { subset } from '@namchee/astro-subfont'; // For font subsetting
 
 import { h } from "hastscript";
@@ -113,8 +112,6 @@ export default defineConfig({
   site: "https://ebacala.com",
   integrations: [sitemap({
     customPages: ["https://ebacala.com/tools/minimalist-wallpapers-generator/"],
-  }), tailwind({
-    applyBaseStyles: false,
   }), subset()],
   trailingSlash: "always",
   markdown: {
