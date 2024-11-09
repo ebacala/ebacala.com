@@ -318,6 +318,7 @@ p {
       border-radius: var(--code-block-border-radius);
       font-size: var(--code-block-font-size);
       padding: calc(16px * 0.25) calc(16px * 0.5);
+      word-wrap: break-word;
     }
 
     & #blog-article-author {
