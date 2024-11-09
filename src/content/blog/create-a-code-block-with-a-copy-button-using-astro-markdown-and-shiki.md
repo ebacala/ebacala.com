@@ -3,7 +3,7 @@ title: How to create a copyable code block using Astro, Markdown and Shiki?
 description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
 date: 2024-09-13
-edited: 2024-11-06
+edited: 2024-11-09
 ---
 
 This personal website has been built using Astro and I use Markdown for my blog posts. For my [previous article](/blog/how-i-adapted-pokemon-emerald-to-my-needs/) I needed to create a code block that one could copy the content to the clipboard.
@@ -263,6 +263,7 @@ pre {
     flex-direction: column;
     justify-content: center;
     left: 0px;
+    overflow-x: scroll;
     position: sticky;
     top: 0px;
     width: 100%;
@@ -272,9 +273,10 @@ pre {
       border-radius: var(--code-block-border-radius);
       font-size: var(--code-block-font-size);
       line-height: 1rem;
+      min-width: 100%;
       padding: calc(16px * 0.5) calc(16px * 1);
       text-align: center;
-      width: 100%;
+      width: max-content;
     }
 
     & .wrapper-copy-code {
@@ -299,6 +301,48 @@ pre {
           background-color: #6b7280;
           cursor: pointer;
         }
+      }
+    }
+  }
+
+  & code {
+    display: block;
+    font-size: var(--code-block-font-size);
+    line-height: 1.25rem;
+    min-width: 100%;
+    overflow-x: scroll;
+    padding: calc(16px * 0.5) calc(16px * 1.25);
+    text-indent: 0px;
+    width: max-content;
+
+    & .line {
+      display: inline-block;
+      min-width: 100%;
+      width: auto;
+    }
+
+    & .diff.add {
+      background-color: #166534;
+      position: relative;
+
+      &:before {
+        color: #22c55e;
+        content: "+";
+        left: -1rem;
+        position: absolute;
+      }
+    }
+
+    & .diff.remove {
+      background-color: #991b1b;
+      opacity: 0.8;
+      position: relative;
+
+      &:before {
+        color: #ef4444;
+        content: "-";
+        left: -1rem;
+        position: absolute;
       }
     }
   }
