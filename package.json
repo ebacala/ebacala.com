@@ -13,7 +13,6 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.2.1",
-    "@namchee/astro-subfont": "^0.1.0",
     "@shikijs/transformers": "^1.22.0",
     "astro": "^4.16.9",
     "hastscript": "^9.0.0",
