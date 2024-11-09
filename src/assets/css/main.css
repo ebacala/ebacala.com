@@ -230,6 +230,7 @@ p {
         flex-direction: column;
         justify-content: center;
         left: 0px;
+        overflow-x: scroll;
         position: sticky;
         top: 0px;
         width: 100%;
@@ -239,9 +240,10 @@ p {
           border-radius: var(--code-block-border-radius);
           font-size: var(--code-block-font-size);
           line-height: 1rem;
+          min-width: 100%;
           padding: calc(16px * 0.5) calc(16px * 1);
           text-align: center;
-          width: 100%;
+          width: max-content;
         }
 
         & .wrapper-copy-code {
