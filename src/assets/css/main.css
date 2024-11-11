@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Regular-subset.woff2") format("woff2");
+  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Bold-subset.woff2") format("woff2");
+  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Bold.woff2") format("woff2");
 }
 
 @font-face {
@@ -19,13 +19,14 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Italic-subset.woff2") format("woff2");
+  src: local("GaramondLibre"), url("/fonts/GaramondLibre-Italic.woff2") format("woff2");
 }
 
 :root {
   --code-block-background-color: #374151;
   --code-block-border-radius: 0.375rem;
   --code-block-font-size: 1rem;
+  --code-block-line-height: 1.25rem;
   --color-background: #ffffff;
   --color-text: #000000;
   --font-family: "GaramondLibre", "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji",
@@ -47,6 +48,11 @@ body {
   min-height: 100%;
   width: 100vw;
   width: 100%;
+
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -274,8 +280,9 @@ p {
 
       & code {
         display: block;
+        font-family: monospace;
         font-size: var(--code-block-font-size);
-        line-height: 1.25rem;
+        line-height: var(--code-block-line-height);
         min-width: 100%;
         overflow-x: scroll;
         padding: calc(16px * 0.5) calc(16px * 1.25);
