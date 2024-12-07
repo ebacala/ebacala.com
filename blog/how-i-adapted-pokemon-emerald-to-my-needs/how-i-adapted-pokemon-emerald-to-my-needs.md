@@ -1,9 +1,10 @@
 ---
+id: how-i-adapted-pokemon-emerald-to-my-needs
 title: How I adapted Pokémon Emerald to my needs?
 description: The story of how I found out I could adapt Pokémon Emerald to my needs and how I changed a few things to make the game more enjoyable for me.
 author: Evann
-date: 2024-08-27
-edited: 2024-11-06
+publishedDate: 2024-08-27
+editedDate: 2024-11-06
 ---
 
 ## Introduction
@@ -113,7 +114,7 @@ A few hundred translations is what it took for me to get a basic enjoyment of th
 
 This one is a tiny teeny frustration. But it is one of the first things I changed to get me acquainted with the project files. 
 
-![Overwrite save confirmation dialog](../../assets/blog/2024-08-27_how-I-adapted-pokemon-emerald-to-my-needs/save-overwrite-confirmation.png)
+![Overwrite save confirmation dialog](./save-overwrite-confirmation.png)
 
 When you overwrite a save file, the game asks you to confirm. I found that kind of annoying, so I removed it.
 
@@ -187,7 +188,7 @@ Growing up, I never traded Pokémons to get some of them to evolve so I never co
 
 The first step is to find an NPC (non-playable character) that is not crucial for the game story completion. I chose the "Fat Man" (that's not me, it is how he's called in the source code 🤷‍♂️) in Littleroot Town.
 
-![Fat Man in Littleroot Town](../../assets/blog/2024-08-27_how-I-adapted-pokemon-emerald-to-my-needs/fat-man.png)
+![Fat Man in Littleroot Town](./fat-man.png)
 
 Now we have to change its dialog script to make him ask me if I want to trade with myself using the script written by TheMaxan.
 

@@ -18,13 +18,13 @@ const blogEntries = await getCollection("blog");
   <section id="blog-entries">
     {
       blogEntries
-        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+        .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime())
         .map((blogEntry) => {
-          const blogEntryDate = new Date(blogEntry.data.date);
+          const blogEntryDate = new Date(blogEntry.data.publishedDate);
           const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, "0")}-${blogEntryDate.getDate().toString().padStart(2, "0")}`;
 
           return (
-            <a class="blog-entry" href={`/blog/${blogEntry.slug}/`} class="debug">
+            <a class="blog-entry" href={`/blog/${blogEntry.data.id}/`} class="debug">
               ({blogEntryDateString}) - {blogEntry.data.title}
             </a>
           );

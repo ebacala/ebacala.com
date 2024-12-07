@@ -1,9 +1,10 @@
 ---
+id: create-a-code-block-with-a-copy-button-using-astro-markdown-and-shiki
 title: How to create a copyable code block using Astro, Markdown and Shiki?
 description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
-date: 2024-09-13
-edited: 2024-11-09
+publishedDate: 2024-09-13
+editedDate: 2024-11-09
 ---
 
 This personal website has been built using Astro and I use Markdown for my blog posts. For my [previous article](/blog/how-i-adapted-pokemon-emerald-to-my-needs/) I needed to create a code block that one could copy the content to the clipboard.

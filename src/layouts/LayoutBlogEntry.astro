@@ -5,13 +5,13 @@ import ogImageDefault from "../assets/og-image/blog.jpeg";
 interface Props {
   title: string;
   description: string;
-  date: string;
+  publishedDate: string;
   author: string;
   url: string;
-  edited?: string;
+  editedDate?: string;
 }
 
-const { url, title, description, date, author, edited } = Astro.props;
+const { url, title, description, publishedDate, author, editedDate } = Astro.props;
 ---
 
 <!doctype html>
@@ -46,7 +46,7 @@ const { url, title, description, date, author, edited } = Astro.props;
     <meta name="twitter:url" content={url} />
     <meta name="twitter:card" content="summary" />
 
-    <script is:inline defer src="https://umami.ebacala.com/script.js" data-website-id="d5f15c0e-e141-4021-a704-508db0fbb220"></script>
+    {import.meta.env.PROD ? <script is:inline defer src="https://umami.ebacala.com/script.js" data-website-id="d5f15c0e-e141-4021-a704-508db0fbb220"></script> : null }
   </head>
 
   <body>
@@ -60,8 +60,8 @@ const { url, title, description, date, author, edited } = Astro.props;
 
     <section id="blog-article">
       <h1>{title}</h1>
-      <h2 id="blog-article-publish-date">Published {date}.</h2>
-      {edited && <h2 id="blog-article-edited-date">Last edited {edited}.</h2>}
+      <h2 id="blog-article-publish-date">Published {publishedDate}.</h2>
+      {editedDate && <h2 id="blog-article-edited-date">Last edited {editedDate}.</h2>}
 
       <article>
         <slot />

@@ -1,8 +1,9 @@
 ---
+id: my-custom-minimalist-wallpapers-generator
 title: My custom minimalist wallpapers generator
 description: A simple wallpapers generator to help me stay focused and remind me of what's important for me.
 author: Evann
-date: 2024-10-30
+publishedDate: 2024-10-30
 ---
 
 For a while now I’ve been interested in minimalism. This philosophy is based on keeping in your life the things that benefit you and getting rid of the things that don't add value to your day to day life. This struck a cord inside me and I quickly tried to learn how to start implementing it to my life.

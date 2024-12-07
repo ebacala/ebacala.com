@@ -1,4 +1,9 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "exclude": ["public", "node_modules", "dist"]
+  "extends": "astro/tsconfigs/base",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["public", "node_modules", "dist"],
+  "compilerOptions": {
+    "strictNullChecks": true, // add if using `base` template
+    "allowJs": true // required, and included with all Astro templates
+  }
 }
