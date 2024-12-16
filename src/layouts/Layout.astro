@@ -1,14 +1,14 @@
 ---
 import "../assets/css/main.css";
-import ogImageDefault from "../assets/og-image/about-me.jpeg";
+import ogImageDefault from "../assets/og-image/about-me.png";
 
 interface Props {
   title: string;
   description: string;
-  ogImagePath?: string;
+  ogImage?: ImageMetadata;
 }
 
-const { title, description, ogImagePath } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const url = canonicalUrl.href;
@@ -35,7 +35,7 @@ const url = canonicalUrl.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={ogImagePath ?? ogImageDefault.src} />
+    <meta property="og:image" content={ogImage ? ogImage.src : ogImageDefault.src} />
     <meta property="og:type" content="website" />
 
     <meta name="twitter:title" content={title} />

@@ -1,12 +1,13 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
 
-import LayoutBlogEntry from '../../layouts/LayoutBlogEntry.astro';
+import LayoutBlogEntry from "../../layouts/LayoutBlogEntry.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { id: post.data.id }, props: { post },
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.data.id },
+    props: { post },
   }));
 }
 
@@ -17,13 +18,24 @@ const blogTitle = post.data.title;
 const blogAuthor = post.data.author;
 const blogDescription = post.data.description;
 const blogPublishedDate = new Date(post.data.publishedDate);
-const blogPublishedDateString = `${blogPublishedDate.getFullYear()}-${(blogPublishedDate.getMonth() + 1).toString().padStart(2, '0')}-${blogPublishedDate.getDate().toString().padStart(2, '0')}`
+const blogPublishedDateString = `${blogPublishedDate.getFullYear()}-${(blogPublishedDate.getMonth() + 1).toString().padStart(2, "0")}-${blogPublishedDate.getDate().toString().padStart(2, "0")}`;
 const blogEditedDate = post.data.editedDate;
-const blogEditedDateString = blogEditedDate ? `${blogEditedDate.getFullYear()}-${(blogEditedDate.getMonth() + 1).toString().padStart(2, '0')}-${blogEditedDate.getDate().toString().padStart(2, '0')}` : undefined;
+const blogEditedDateString = blogEditedDate
+  ? `${blogEditedDate.getFullYear()}-${(blogEditedDate.getMonth() + 1).toString().padStart(2, "0")}-${blogEditedDate.getDate().toString().padStart(2, "0")}`
+  : undefined;
+const blogOgImage = post.data.ogImage;
 
 const url = Astro.url.href;
 ---
 
-<LayoutBlogEntry title={blogTitle} description={blogDescription} publishedDate={blogPublishedDateString} author={blogAuthor} url={url} editedDate={blogEditedDateString}>
-    <Content />
+<LayoutBlogEntry
+  title={blogTitle}
+  description={blogDescription}
+  publishedDate={blogPublishedDateString}
+  author={blogAuthor}
+  url={url}
+  editedDate={blogEditedDateString}
+  ogImage={blogOgImage}
+>
+  <Content />
 </LayoutBlogEntry>

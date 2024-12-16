@@ -5,6 +5,7 @@ description: The story of how I found out I could adapt Pokémon Emerald to my n
 author: Evann
 publishedDate: 2024-08-27
 editedDate: 2024-11-06
+ogImage: ./og_image.png
 ---
 
 ## Introduction

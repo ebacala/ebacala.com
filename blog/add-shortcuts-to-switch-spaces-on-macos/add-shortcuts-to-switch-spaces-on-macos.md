@@ -4,6 +4,7 @@ title: How to add shortcuts to switch between macOS spaces?
 description: How to add shortcuts to switch between macOS spaces?
 author: Evann
 publishedDate: 2024-10-13
+ogImage: ./og_image.png
 ---
 
 ## Introduction

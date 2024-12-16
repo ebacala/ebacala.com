@@ -1,6 +1,6 @@
 ---
 import "../assets/css/main.css";
-import ogImageDefault from "../assets/og-image/blog.jpeg";
+import ogImageDefault from "../assets/og-image/blog.png";
 
 interface Props {
   title: string;
@@ -9,9 +9,10 @@ interface Props {
   author: string;
   url: string;
   editedDate?: string;
+  ogImage?: ImageMetadata;
 }
 
-const { url, title, description, publishedDate, author, editedDate } = Astro.props;
+const { url, title, description, publishedDate, author, editedDate, ogImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +39,7 @@ const { url, title, description, publishedDate, author, editedDate } = Astro.pro
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={ogImageDefault.src} />
+    <meta property="og:image" content={ogImage ? ogImage.src : ogImageDefault.src} />
     <meta property="og:type" content="article" />
 
     <meta name="twitter:title" content={title} />

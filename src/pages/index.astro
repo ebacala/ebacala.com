@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 
 import profilePicture from "../assets/img/profile-picture.png";
-import ogImage from "../assets/og-image/about-me.jpeg";
+import ogImage from "../assets/og-image/about-me.png";
 
 const description =
   "Welcome to my personal website! I'm Evann BACALA, a french developer currently based in New Zealand. Get to know a bit about me, my projects and my blog here.";
@@ -31,7 +31,7 @@ const socialLinks = [
 ];
 ---
 
-<Layout title="Evann BACALA's personal website and blog" description={description} ogImagePath={ogImage.src}>
+<Layout title="Evann BACALA's personal website and blog" description={description} ogImage={ogImage}>
   <section id="summary">
     <Image id="profile-picture" loading="eager" src={profilePicture} alt="Evann BACALA" />
 

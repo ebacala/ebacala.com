@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 
-import ogImage from "../../assets/og-image/blog.jpeg";
+import ogImage from "../../assets/og-image/blog.png";
 
 const blogEntries = await getCollection("blog");
 ---
@@ -11,7 +11,7 @@ const blogEntries = await getCollection("blog");
 <Layout
   title="Evann BACALA's personal website and blog"
   description="In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting."
-  ogImagePath={ogImage.src}
+  ogImage={ogImage}
 >
   <h1 id="blog-title">A place for my wandering thoughts...</h1>
 
