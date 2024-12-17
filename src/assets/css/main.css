@@ -29,8 +29,7 @@
   --code-block-line-height: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
   --color-background: #ffffff;
   --color-text: #000000;
-  --font-family: "GaramondLibre", "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family: "GaramondLibre", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-size-h1: clamp(1.35rem, 0.95rem + 2vw, 2.5rem);
   --font-size-h2: clamp(1.25rem, 0.85rem + 1.9vw, 2.25rem);
   --font-size-h3: clamp(1.125rem, 0.75rem + 1.8481vw, 2rem);
