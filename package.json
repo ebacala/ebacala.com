@@ -14,7 +14,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.2.1",
     "@shikijs/transformers": "^1.24.2",
-    "astro": "^5.0.5",
+    "astro": "^5.1.1",
     "hastscript": "^9.0.0",
     "sharp": "^0.33.5",
     "typescript": "^5.7.2"
