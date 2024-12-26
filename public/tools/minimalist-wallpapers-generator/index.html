@@ -3,32 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="A small tool to generate minimalist wallpapers for your devices.">
-    <meta name="robots" content="noimageindex">
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="A small tool to generate minimalist wallpapers for your devices."
+    />
+    <meta name="robots" content="noimageindex" />
 
     <title>Minimalist wallpapers generator</title>
-    
-    <link rel="canonical" href="https://ebacala.com/tools/minimalist-wallpapers-generator/">
-  
-    <link rel="icon" type="image/png" href="./favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
 
-    <meta property="og:title" content="Minimalist wallpapers generator">
-    <meta property="og:description" content="A small tool to generate minimalist wallpapers for your devices.">
-    <meta property="og:url" content="https://ebacala.com/tools/minimalist-wallpapers-generator/">
-    <meta property="og:image" content="./og-image.jpeg">
-    <meta property="og:type" content="tool">
+    <link rel="canonical" href="https://ebacala.com/tools/minimalist-wallpapers-generator/" />
 
-    <meta name="twitter:title" content="Minimalist wallpapers generator">
-    <meta name="twitter:description" content="A small tool to generate minimalist wallpapers for your devices.">
-    <meta name="twitter:url" content="https://ebacala.com/tools/minimalist-wallpapers-generator/">
-    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" href="./favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
 
-    <script defer src="https://umami.ebacala.com/script.js" data-website-id="d5f15c0e-e141-4021-a704-508db0fbb220"></script>
+    <meta property="og:title" content="Minimalist wallpapers generator" />
+    <meta
+      property="og:description"
+      content="A small tool to generate minimalist wallpapers for your devices."
+    />
+    <meta property="og:url" content="https://ebacala.com/tools/minimalist-wallpapers-generator/" />
+    <meta property="og:image" content="./og-image.jpeg" />
+    <meta property="og:type" content="tool" />
+
+    <meta name="twitter:title" content="Minimalist wallpapers generator" />
+    <meta
+      name="twitter:description"
+      content="A small tool to generate minimalist wallpapers for your devices."
+    />
+    <meta name="twitter:url" content="https://ebacala.com/tools/minimalist-wallpapers-generator/" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- <script defer src="https://umami.ebacala.com/script.js" data-website-id="d5f15c0e-e141-4021-a704-508db0fbb220"></script> -->
 
     <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./app.css" />
@@ -376,12 +385,13 @@
         </div>
       </div>
 
-      <div id="canvasContainer"></div>
+      <div id="wallpaperContainer"></div>
     </main>
 
     <script defer src="./alpine.js"></script>
 
     <script>
+      // Made with ❤️ by Evann BACALA (https://ebacala.com)
       document.addEventListener("alpine:init", () => {
         Alpine.data("miniWallpapers", () => ({
           // Tabs
@@ -493,9 +503,7 @@
 
           generateSvg() {
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("id", "canvas");
-            svg.setAttribute("width", this.svgProperties.canvasWidth);
-            svg.setAttribute("height", this.svgProperties.canvasHeight);
+            svg.setAttribute("id", "wallpaper");
             svg.setAttribute(
               "viewBox",
               `0 0 ${this.svgProperties.canvasWidth} ${this.svgProperties.canvasHeight}`
@@ -507,8 +515,24 @@
             svg.appendChild(this.generateLinesEnds());
             svg.appendChild(this.generateLines());
 
-            document.getElementById("canvasContainer").innerHTML = "";
-            document.getElementById("canvasContainer").appendChild(svg);
+            document.getElementById("wallpaperContainer").innerHTML = "";
+            document.getElementById("wallpaperContainer").appendChild(svg);
+          },
+
+          resizeSvg() {
+            const wallpaperContainer = document.getElementById("wallpaperContainer");
+            const svg = document.getElementById("wallpaper");
+
+            svg.style.width = "auto";
+            svg.style.height = "auto";
+            
+            if (this.svgProperties.canvasWidth > this.svgProperties.canvasHeight) {
+              svg.style.width = "100%";
+              svg.style.height = "auto";
+            } else {
+              svg.style.height = "100%";
+              svg.style.width = "auto";
+            }
           },
 
           generateLines() {
@@ -726,7 +750,7 @@
               linesEndsWidth: Number,
               linesEndsSize: Number,
               linesEndsSquareCornerRadius: Number,
-              
+
               // Boolean properties
               canvasTextFontIsBold: (val) => JSON.parse(val),
               canvasTextFontIsItalic: (val) => JSON.parse(val),
@@ -764,13 +788,17 @@
               this.debouncedUpdateUrl();
 
               this.generateSvg();
+              this.resizeSvg();
             });
 
             this.generateSvg();
+            this.resizeSvg();
+
+            window.addEventListener("resize", () => this.resizeSvg())
           },
 
           downloadAsPNG() {
-            const svg = document.getElementById("canvas");
+            const svg = document.getElementById("wallpaper");
             const serializer = new XMLSerializer();
             const svgStr = serializer.serializeToString(svg);
 
