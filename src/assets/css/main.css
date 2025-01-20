@@ -28,7 +28,8 @@
   --code-block-font-size: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
   --code-block-line-height: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
   --color-background: #ffffff;
-  --color-text: #000000;
+  --color-text: hsl(0, 0%, 10%);
+  --color-text-important: hsl(0, 0%, 0%);
   --font-family: "GaramondLibre", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-size-h1: clamp(1.35rem, 0.95rem + 2vw, 2.5rem);
   --font-size-h2: clamp(1.25rem, 0.85rem + 1.9vw, 2.25rem);
@@ -65,7 +66,7 @@ body {
 }
 
 a {
-  color: var(--color-text);
+  color: var(--color-text-important);
   font-size: var(--font-size-text);
   text-decoration: none;
 
