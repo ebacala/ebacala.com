@@ -121,7 +121,7 @@ export default defineConfig({
         transformerCreateCodeBlockHeader(),
         transformerAddTitleToCodeBlocksHeaders(),
         transformerCopyButton(),
-        transformerNotationDiff(),
+        transformerNotationDiff({matchAlgorithm: "v3"}),
       ],
       wrap: false,
     },
