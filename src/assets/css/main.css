@@ -85,6 +85,10 @@ nav {
   padding-top: calc(16px * 0.5);
   width: 100%;
 
+  & a {
+    line-height: 1.2rem;
+  }
+
   & + hr {
     border: none;
     border-bottom: 1px solid #cccccc;
