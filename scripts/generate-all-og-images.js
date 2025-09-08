@@ -48,6 +48,15 @@ async function generateAllOGImages() {
 }
 
 async function processBlogPost(postPath) {
+  const postDir = path.dirname(postPath);
+  const ogImagePath = path.join(postDir, "og_image.png");
+
+  // Check if OG image already exists
+  if (fs.existsSync(ogImagePath)) {
+    console.log(`⏭️  OG image already exists for ${path.basename(postPath)}, skipping...`);
+    return;
+  }
+
   // Read the markdown file
   const content = fs.readFileSync(postPath, "utf-8");
 
@@ -74,9 +83,6 @@ async function processBlogPost(postPath) {
     console.log(`No title found in ${postPath}`);
     return;
   }
-
-  const postDir = path.dirname(postPath);
-  const ogImagePath = path.join(postDir, "og_image.png");
 
   // Generate the OG image
   console.log(`Generating OG image for ${path.basename(postPath)}...`);
