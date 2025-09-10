@@ -27,15 +27,20 @@
   --code-block-border-radius: 0.375rem;
   --code-block-font-size: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
   --code-block-line-height: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
-  --color-background: #ffffff;
-  --color-text: hsl(0, 0%, 10%);
+  --color-background: oklch(98.5% 0 0);
+  --color-text: oklch(14.5% 0 0);
   --color-text-important: hsl(0, 0%, 0%);
-  --font-family: "GaramondLibre", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family: "GaramondLibre", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-size-h1: clamp(1.35rem, 0.95rem + 2vw, 2.5rem);
   --font-size-h2: clamp(1.25rem, 0.85rem + 1.9vw, 2.25rem);
   --font-size-h3: clamp(1.125rem, 0.75rem + 1.8481vw, 2rem);
   --font-size-h4: clamp(1rem, 0.65rem + 1.5vw, 1.75rem);
   --font-size-text: clamp(0.9375rem, 0.8288rem + 0.5435vw, 1.25rem);
+}
+
+[debug] {
+  outline: 1px solid red;
 }
 
 * {
@@ -48,6 +53,7 @@ html {
 
 html,
 body {
+  background-color: var(--color-background);
   font-family: var(--font-family);
   margin: 0;
   min-height: 100vh;
@@ -62,7 +68,7 @@ body {
 }
 
 body {
-  padding: 0 calc(16px * 2);
+  padding: 0 2rem;
 }
 
 a {
@@ -77,7 +83,7 @@ a {
 
 nav {
   align-items: center;
-  background-color: var(--color-background);
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -333,7 +339,7 @@ p {
     }
 
     & code:not(pre code) {
-      background-color: #D1D5DB;
+      background-color: #d1d5db;
       border-radius: var(--code-block-border-radius);
       font-size: var(--code-block-font-size);
       padding: calc(16px * 0.25) calc(16px * 0.5);
