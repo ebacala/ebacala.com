@@ -3,32 +3,27 @@ import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
 
-import ogImage from "../../assets/og-image/blog.png";
-
 const blogEntries = await getCollection("blog");
+const blogEntriesSorted = blogEntries.sort(
+  (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+);
 ---
 
-<Layout
-  title="Evann BACALA's personal website and blog"
-  description="In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting."
-  ogImage={ogImage}
->
-  <h1 id="blog-title">A place for my wandering thoughts...</h1>
+<Layout>
+  <h1 class="text-center">A place for my wandering thoughts...</h1>
 
-  <section id="blog-entries">
+  <section class="flex flex-col items-start justify-center gap-4">
     {
-      blogEntries
-        .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime())
-        .map((blogEntry) => {
-          const blogEntryDate = new Date(blogEntry.data.publishedDate);
-          const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, "0")}-${blogEntryDate.getDate().toString().padStart(2, "0")}`;
+      blogEntriesSorted.map((blogEntry) => {
+        const blogEntryDate = new Date(blogEntry.data.publishedDate);
+        const blogEntryDateString = `${blogEntryDate.getFullYear()}-${(blogEntryDate.getMonth() + 1).toString().padStart(2, "0")}-${blogEntryDate.getDate().toString().padStart(2, "0")}`;
 
-          return (
-            <a class="blog-entry" href={`/blog/${blogEntry.data.id}/`} class="debug">
-              ({blogEntryDateString}) - {blogEntry.data.title}
-            </a>
-          );
-        })
+        return (
+          <a href={`/blog/${blogEntry.data.id}/`}>
+            ({blogEntryDateString}) - {blogEntry.data.title}
+          </a>
+        );
+      })
     }
   </section>
 </Layout>

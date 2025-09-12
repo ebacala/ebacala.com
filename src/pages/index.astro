@@ -2,12 +2,9 @@
 import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 
 import profilePicture from "../assets/img/profile-picture.png";
-import ogImage from "../assets/og-image/about-me.png";
-
-const description =
-  "Welcome to my personal website! I'm Evann BACALA, a french developer currently based in New Zealand. Get to know a bit about me, my projects and my blog here.";
 
 const socialLinks = [
   {
@@ -31,29 +28,36 @@ const socialLinks = [
 ];
 ---
 
-<Layout title="Evann BACALA's personal website and blog" description={description} ogImage={ogImage}>
-  <section id="summary">
-    <Image id="profile-picture" loading="eager" src={profilePicture} alt="Evann BACALA" />
+<Layout>
+  <section class="flex flex-col items-center justify-center gap-4">
+    <Image
+      class="w-[125px] h-[125px] rounded-full border-1 border-neutral-300"
+      loading="eager"
+      src={profilePicture}
+      alt="Evann Bacala"
+    />
 
-    <h1>Hi I'm Evann Bacala</h1>
-
-    <div id="social-links">
-      {
-        socialLinks.map((link) => (
-          <a href={link.link} target="_blank" rel="noopener">
-            <Image loading="eager" class="logo" src={link.logo} alt={link.alt} />
-          </a>
-        ))
-      }
+    <div class="flex flex-col items-center justify-center gap-2">
+      <h1>Hi I'm Evann Bacala</h1>
+      <div class="flex flex-col items-center justify-center gap-4">
+        You can find me here
+        <span class="flex flex-row items-center justify-center gap-2">
+          {
+            socialLinks.map((link) => (
+              <a href={link.link} target="_blank" rel="noopener">
+                <Image class="w-[25px] h-[25px]" loading="eager" src={link.logo} alt={link.alt} />
+              </a>
+            ))
+          }
+        </span>
+      </div>
     </div>
   </section>
 
-  <section id="presentation">
-    <p>
-      My tech journey began in 2016 with a 2-year computer science program, followed by a 3-year
-      work-study program alternating between school and real-world projects, primarily for the
-      French national health system. Since 2022, I've been continuously expanding my technical and
-      soft skills through new technologies and tools. I <a href="/blog/">write stuff</a> I find interesting on this personal website.
-    </p>
-  </section>
+  <Card class="text-justify indent-4">
+    Fullstack developer with 5+ years of experience building web applications using Vue.js, Node.js
+    and Spring Boot, with modern development practices. Currently seeking remote frontend/fullstack
+    opportunities. I <a class="underline" href="/blog/">write stuff</a> I find interesting on this personal
+    website.
+  </Card>
 </Layout>

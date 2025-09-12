@@ -2,6 +2,8 @@
 import "../assets/css/main.css";
 import ogImageDefault from "../assets/og-image/blog.png";
 
+import Navbar from "../components/Navbar.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -48,26 +50,114 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
     <meta name="twitter:card" content="summary" />
   </head>
 
-  <body>
-    <header>
-      <nav>
-        <a href="/">About me</a>
-        <a href="/blog/">Blog</a>
-      </nav>
-      <hr />
-    </header>
+  <body class="max-w-[600px] w-[90%] mx-auto flex flex-col justify-start items-center gap-10">
+    <Navbar />
 
-    <section id="blog-article">
+    <section class="w-full p-4 flex flex-col gap-4">
       <h1>{title}</h1>
-      <h2 id="blog-article-publish-date">Published {publishedDate}.</h2>
-      {editedDate && <h2 id="blog-article-edited-date">Last edited {editedDate}.</h2>}
 
-      <article>
+      <div class="flex flex-col gap-1">
+        <span class="font-light text-neutral-500">Published {publishedDate}.</span>
+        {editedDate && <span class="font-light text-neutral-500">Last edited {editedDate}.</span>}
+      </div>
+
+      <article class="flex flex-col items-start justify-center gap-4 text-justify indent-4">
         <slot />
-        <p id="blog-article-author">{author}</p>
+        <p class="w-full text-right">{author}</p>
       </article>
 
-      <a href="#" id="blog-article-back-to-top">&uarr; Back to top</a>
+      <a class="w-full text-center underline" href="#">&uarr; Back to top</a>
     </section>
   </body>
 </html>
+
+<style>
+  @reference "../assets/css/main.css";
+
+  article {
+    counter-reset: section sub-section sub-sub-section;
+
+    a {
+      @apply underline;
+    }
+
+    blockquote {
+      @apply border-x-3 border-neutral-300 px-3 italic;
+    }
+
+    /* Single line code snippets from `` in markdown  */
+    code:not(pre code) {
+      @apply px-2 py-1 bg-neutral-200 font-mono text-sm rounded-sm;
+    }
+
+    /* Code blocks */
+    pre {
+      @apply relative w-full rounded-md;
+
+      .pre-header {
+        @apply w-full sticky top-0 left-0;
+
+        .pre-title {
+          @apply w-full text-sm bg-slate-600 text-center;
+        }
+
+        .copy-code {
+          @apply float-end m-1 py-1 px-2 rounded-md text-neutral-50 hover:bg-slate-500 hover:cursor-pointer;
+        }
+      }
+
+      code {
+        @apply min-w-full overflow-x-scroll text-sm flex flex-col gap-0 pb-2;
+
+        .line {
+          @apply leading-6;
+        }
+
+        .diff.add {
+          @apply bg-green-800;
+
+          &:before {
+            @apply absolute left-[-0.75rem] text-green-400;
+            content: "+";
+          }
+        }
+
+        .diff.remove {
+          @apply bg-red-800;
+
+          &:before {
+            @apply absolute left-[-0.75rem] text-red-400;
+            content: "-";
+          }
+        }
+      }
+    }
+
+    h2 {
+      @apply text-xl font-semibold;
+      counter-increment: section;
+
+      &:before {
+        content: counter(section) ". ";
+      }
+    }
+
+    h3 {
+      @apply text-lg font-semibold;
+      counter-increment: sub-section;
+
+      &:before {
+        content: counter(section) "." counter(sub-section) ". ";
+      }
+    }
+
+    h4 {
+      @apply text-base font-semibold;
+      counter-increment: sub-sub-section;
+
+      &:before {
+        content: counter(section) "." counter(sub-section) "." counter(sub-sub-section) ". ";
+      }
+    }
+  }
+</style>

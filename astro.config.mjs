@@ -5,6 +5,8 @@ import { h } from "hastscript";
 
 import { transformerNotationDiff } from "@shikijs/transformers";
 
+import tailwindcss from "@tailwindcss/vite";
+
 /**
  * This transformer is used to extract the meta information from the markdown file.
  * Example:
@@ -82,23 +84,17 @@ const transformerCopyButton = () => ({
       const preHeaderDiv = node.children[0];
 
       const copyCodeButton = h(
-        "div",
+        "button",
         {
-          class: "wrapper-copy-code",
-        },
-        h(
-          "button",
-          {
-            class: "copy-code",
-            "data-code": this.source,
-            onclick: `
+          class: "copy-code",
+          "data-code": this.source,
+          onclick: `
               navigator.clipboard.writeText(this.dataset.code);
               this.textContent = 'Copied!';
               setTimeout(() => this.textContent = 'Copy', 1000)
             `,
-          },
-          "Copy"
-        )
+        },
+        "Copy"
       );
 
       preHeaderDiv.children.push(copyCodeButton);
@@ -109,10 +105,19 @@ const transformerCopyButton = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: "https://ebacala.com",
-  integrations: [sitemap({
-    customPages: ["https://ebacala.com/tools/minimalist-wallpapers-generator/"],
-  })],
+
+  integrations: [
+    sitemap({
+      customPages: ["https://ebacala.com/tools/minimalist-wallpapers-generator/"],
+    }),
+  ],
+
   trailingSlash: "always",
+
+  prefetch: {
+    prefetchAll: true,
+  },
+
   markdown: {
     shikiConfig: {
       theme: "dracula",
@@ -121,9 +126,13 @@ export default defineConfig({
         transformerCreateCodeBlockHeader(),
         transformerAddTitleToCodeBlocksHeaders(),
         transformerCopyButton(),
-        transformerNotationDiff({matchAlgorithm: "v3"}),
+        transformerNotationDiff({ matchAlgorithm: "v3" }),
       ],
       wrap: false,
     },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
