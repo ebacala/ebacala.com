@@ -3,8 +3,10 @@ import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import Project from "../components/Project.astro";
 
 import profilePicture from "../assets/img/profile-picture.png";
+import linkstash from "../assets/img/projects/linkstash.png";
 
 const socialLinks = [
   {
@@ -32,7 +34,7 @@ const socialLinks = [
   <section class="flex flex-col items-center justify-center gap-4">
     <Image
       class="w-[125px] h-[125px] rounded-full border-1 border-neutral-300"
-      loading="eager"
+      priority
       src={profilePicture}
       alt="Evann Bacala"
     />
@@ -45,7 +47,7 @@ const socialLinks = [
           {
             socialLinks.map((link) => (
               <a href={link.link} target="_blank" rel="noopener">
-                <Image class="w-[25px] h-[25px]" loading="eager" src={link.logo} alt={link.alt} />
+                <Image class="w-[25px] h-[25px]" priority src={link.logo} alt={link.alt} />
               </a>
             ))
           }
@@ -60,4 +62,40 @@ const socialLinks = [
     opportunities. I <a class="underline" href="/blog/">write stuff</a> I find interesting on this personal
     website.
   </Card>
+
+  <section class="flex flex-col items-start justify-center gap-8">
+    <header class="flex flex-col items-start justify-center gap-4">
+      <h1>Projects</h1>
+      <div>
+        Here are some side-projects I built to solve problems or issues I encountered or to try out
+        new frameworks, libraries, etc.
+      </div>
+    </header>
+
+    <Project
+      title="Linkstash"
+      projectlink="https://linkstash.ebacala.com"
+      technologies={["Astro", "AlpineJs", "SQLite"]}
+    >
+      <Image slot="image" src={linkstash} alt="Linkstash project logo" priority/>
+
+      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+        <p>
+          Simple bookmarks dashboard. The idea came to me when I kept on switching browsers and
+          computers, I was tired of having to re-import my bookmarks all the time.
+        </p>
+
+        <p>
+          There's a demo account if you want to check it out. The project is not available to
+          external sign-ups.
+        </p>
+
+        <p>
+          This project was my first playground to test out Astro SSR (using actions). It became my
+          homepage on every browser and device I have. It will evolve with time as I find new ideas
+          as to what can be implemented in it.
+        </p>
+      </div>
+    </Project>
+  </section>
 </Layout>
