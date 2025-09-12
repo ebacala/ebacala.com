@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import Project from "../components/Project.astro";
+import SmallProject from "../components/SmallProject.astro";
 
 import profilePicture from "../assets/img/profile-picture.png";
 import linkstash from "../assets/img/projects/linkstash.png";
@@ -67,8 +68,8 @@ const socialLinks = [
     <header class="flex flex-col items-start justify-center gap-4">
       <h1>Projects</h1>
       <div>
-        Here are some side-projects I built to solve problems or issues I encountered or to try out
-        new frameworks, libraries, etc.
+        Here are some side-projects I built to solve problems/issues I encountered or to try out new
+        frameworks, libraries, etc.
       </div>
     </header>
 
@@ -77,7 +78,7 @@ const socialLinks = [
       projectlink="https://linkstash.ebacala.com"
       technologies={["Astro", "AlpineJs", "SQLite"]}
     >
-      <Image slot="image" src={linkstash} alt="Linkstash project logo" priority/>
+      <Image slot="image" src={linkstash} alt="Linkstash project logo" priority />
 
       <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
         <p>
@@ -97,5 +98,38 @@ const socialLinks = [
         </p>
       </div>
     </Project>
+  </section>
+
+  <section class="flex flex-col items-start justify-center gap-8">
+    <header class="flex flex-col items-start justify-center gap-4">
+      <h1>Small stuff</h1>
+      <div>Here is the small stuff I built to solve small problems.</div>
+    </header>
+
+    <SmallProject
+      title="Apple Photos EXIF Date Updater"
+      projectlink="https://github.com/ebacala/apple-photos-exif-date-updater"
+      technologies={["Bash"]}
+    >
+      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+        <p>
+          This came from an issue I had when importing photos from Apple Photos to another tool.
+          Full story <a class="underline" href="/blog/how-i-fixed-apple-photos-dates/">here</a>.
+        </p>
+      </div>
+    </SmallProject>
+
+    <SmallProject
+      title="ebacala.com - OG Image Generator"
+      projectlink="https://github.com/ebacala/ebacala.com-OG-Image-Generator"
+      technologies={["Javascript", "Puppeteer"]}
+    >
+      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+        <p>
+          I was tired of using external tools to create OG images so I built my own (super) small
+          tool.
+        </p>
+      </div>
+    </SmallProject>
   </section>
 </Layout>

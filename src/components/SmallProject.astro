@@ -1,0 +1,36 @@
+---
+import Card from "./Card.astro";
+
+export interface Props {
+  title: string;
+  projectlink?: string;
+  repoLink?: string;
+  technologies?: string[];
+}
+
+const { title, projectlink, technologies } = Astro.props;
+---
+
+<Card class="flex flex-col items-start justify-center gap-2">
+  {
+    projectlink ? (
+      <h3>
+        <a href={projectlink} target="_blank" rel="noopener">
+          {title}
+        </a>
+      </h3>
+    ) : (
+      <h3>{title}</h3>
+    )
+  }
+
+  <div class="flex flex-wrap items-center justify-start gap-3">
+    {
+      technologies?.map((technology) => (
+        <span class="text-sm bg-neutral-200 shadow-xs rounded-full py-1 px-2">{technology}</span>
+      ))
+    }
+  </div>
+
+  <slot name="body" />
+</Card>
