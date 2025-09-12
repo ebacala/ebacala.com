@@ -6,7 +6,7 @@
 }
 
 a {
-  @apply hover:underline;
+  @apply hover:underline focus:underline active:underline;
 }
 
 h1 {
