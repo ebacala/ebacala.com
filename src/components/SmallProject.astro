@@ -14,13 +14,13 @@ const { title, projectlink, technologies } = Astro.props;
 <Card class="flex flex-col items-start justify-center gap-2">
   {
     projectlink ? (
-      <h3>
+      <h2>
         <a href={projectlink} target="_blank" rel="noopener">
           {title}
         </a>
-      </h3>
+      </h2>
     ) : (
-      <h3>{title}</h3>
+      <h2>{title}</h2>
     )
   }
 
@@ -34,3 +34,11 @@ const { title, projectlink, technologies } = Astro.props;
 
   <slot name="body" />
 </Card>
+
+<style>
+  @reference "../assets/css/main.css";
+
+  h2 {
+    @apply text-base font-semibold
+  }
+</style>
