@@ -8,6 +8,7 @@ import SmallProject from "../components/SmallProject.astro";
 
 import profilePicture from "../assets/img/profile-picture.png";
 import linkstash from "../assets/img/projects/linkstash.png";
+import neverCircle from "../assets/img/projects/never-circle.png";
 
 const socialLinks = [
   {
@@ -76,6 +77,28 @@ const socialLinks = [
     </header>
 
     <Project
+      title="Never Circle"
+      projectlink="https://never-circle.com"
+      technologies={["Vue.js", "Capacitor", "iOS"]}
+    >
+      <Image slot="image" src={neverCircle} alt="Never Circle project logo" priority />
+
+      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+        <p>
+          Small party game inspired by "Never Have I Ever?". 3-round game featuring different
+          question decks.
+        </p>
+
+        <p>
+          I wanted to make this project for two reasons. First, I wanted to try to create an iOS app
+          (this one uses Capacitor, but still) to get a glance at the whole process. Second, the
+          games I saw on the App Store were subscription-based with a high weekly price, which I
+          find quite problematic considering the target market.
+        </p>
+      </div>
+    </Project>
+
+    <Project
       title="Linkstash"
       projectlink="https://linkstash.ebacala.com"
       technologies={["Astro", "AlpineJs", "SQLite"]}
@@ -100,38 +123,43 @@ const socialLinks = [
         </p>
       </div>
     </Project>
-  </section>
 
-  <section class="flex flex-col items-start justify-center gap-8">
-    <header class="flex flex-col items-start justify-center gap-4">
-      <h1>Small stuff</h1>
-      <div>Here is the small stuff I built to solve small problems.</div>
-    </header>
+    <section class="flex flex-col items-start justify-center gap-8">
+      <header class="flex flex-col items-start justify-center gap-4">
+        <h1>Small stuff</h1>
+        <div>Here is the small stuff I built to solve small problems.</div>
+      </header>
 
-    <SmallProject
-      title="Apple Photos EXIF Date Updater"
-      projectlink="https://github.com/ebacala/apple-photos-exif-date-updater"
-      technologies={["Bash"]}
-    >
-      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
-        <p>
-          This came from an issue I had when importing photos from Apple Photos to another tool.
-          Full story <a class="underline" href="/blog/how-i-fixed-apple-photos-dates/" target="_blank" rel="noopener">in this blog post</a>.
-        </p>
-      </div>
-    </SmallProject>
+      <SmallProject
+        title="Apple Photos EXIF Date Updater"
+        projectlink="https://github.com/ebacala/apple-photos-exif-date-updater"
+        technologies={["Bash"]}
+      >
+        <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+          <p>
+            This came from an issue I had when importing photos from Apple Photos to another tool.
+            Full story <a
+              class="underline"
+              href="/blog/how-i-fixed-apple-photos-dates/"
+              target="_blank"
+              rel="noopener">in this blog post</a
+            >.
+          </p>
+        </div>
+      </SmallProject>
 
-    <SmallProject
-      title="ebacala.com - OG Image Generator"
-      projectlink="https://github.com/ebacala/ebacala.com-OG-Image-Generator"
-      technologies={["Javascript", "Puppeteer"]}
-    >
-      <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
-        <p>
-          I was tired of using external tools to create OG images so I built my own (super) small
-          tool.
-        </p>
-      </div>
-    </SmallProject>
+      <SmallProject
+        title="ebacala.com - OG Image Generator"
+        projectlink="https://github.com/ebacala/ebacala.com-OG-Image-Generator"
+        technologies={["Javascript", "Puppeteer"]}
+      >
+        <div slot="body" class="flex flex-col gap-2 text-justify indent-4">
+          <p>
+            I was tired of using external tools to create OG images so I built my own (super) small
+            tool.
+          </p>
+        </div>
+      </SmallProject>
+    </section>
   </section>
 </Layout>
