@@ -4,7 +4,7 @@ title: How to create a copyable code block using Astro, Markdown and Shiki?
 description: Learn how to implement a code block with a copy button feature with Astro, Markdown and Shiki custom transformers.
 author: Evann
 publishedDate: 2024-09-13
-editedDate: 2024-11-09
+editedDate: 2025-09-15
 ogImage: ./og_image.png
 ---
 
@@ -21,8 +21,10 @@ RUN git clone https://github.com/pret/agbcc
 
 WORKDIR /agbcc
 
-RUN chmod +x build.sh install.sh // [!code ++]‎
-RUN ./build.sh // [!code --]‎
+ㅤ# [!code ++]
+RUN chmod +x build.sh install.sh
+ㅤ# [!code --]
+RUN ./build.sh
 RUN ./install.sh /pokeemerald
 ```
 ````
@@ -38,8 +40,10 @@ RUN git clone https://github.com/pret/agbcc
 
 WORKDIR /agbcc
 
-RUN chmod +x build.sh install.sh // [!code ++]
-RUN ./build.sh // [!code --]
+# [!code ++]
+RUN chmod +x build.sh install.sh
+# [!code --]
+RUN ./build.sh
 RUN ./install.sh /pokeemerald
 ```
 
@@ -239,7 +243,9 @@ export default defineConfig({
 });
 ```
 
-To show the diff just add `// [!code +]` or `// [!code -]` in the Markdown at the end of the line you want to show as added or removed.
+~~To show the diff just add `// [!code ++]` or `// [!code --]` in the Markdown at the end of the line you want to show as added or removed.~~
+
+⚠️ **Edit (2025-09-15)**: To ensure that added or removed lines are displayed correctly, make sure that the `[!code ++]` and `[!code --]` markers are placed within comments according to the language you are using (for example, `//` in JavaScript/TypeScript, as shown in my examples). If the language does not support inline comments (such as `Dockerfile`), place the markers on the line above the code you want to mark as added or removed.
 
 ## Styling the code blocks
 
@@ -364,8 +370,10 @@ RUN git clone https://github.com/pret/agbcc
 
 WORKDIR /agbcc
 
-RUN chmod +x build.sh install.sh // [!code ++]
-RUN ./build.sh // [!code --]
+# [!code ++]
+RUN chmod +x build.sh install.sh
+# [!code --]
+RUN ./build.sh
 RUN ./install.sh /pokeemerald
 ```
 
