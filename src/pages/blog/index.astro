@@ -20,7 +20,7 @@ const blogEntriesSorted = blogEntries.sort(
 
         return (
           <a href={`/blog/${blogEntry.data.id}/`}>
-            ({blogEntryDateString}) - {blogEntry.data.title}
+            ({blogEntryDateString}) - <span transition:name={`post-${blogEntry.data.title}`}>{blogEntry.data.title}</span>
           </a>
         );
       })

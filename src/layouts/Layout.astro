@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../assets/css/main.css";
 import ogImageDefault from "../assets/og-image/about-me.png";
 
@@ -7,8 +8,9 @@ import Navbar from "../components/Navbar.astro";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const url = canonicalUrl.href;
 
-const title="Evann BACALA's personal website and blog"
-const description="In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting."
+const title = "Evann BACALA's personal website and blog";
+const description =
+  "In here you will find some of my thoughts. They might be about everything and anything, as long as I find it interesting.";
 ---
 
 <!doctype html>
@@ -41,6 +43,8 @@ const description="In here you will find some of my thoughts. They might be abou
     <meta name="twitter:card" content="summary" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <ClientRouter />
   </head>
 
   <body class="max-w-[600px] w-[90%] mx-auto pb-5 flex flex-col justify-start items-center gap-10">
