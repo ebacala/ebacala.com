@@ -14,13 +14,13 @@
   "dependencies": {
     "@astrojs/check": "^0.9.5",
     "@astrojs/sitemap": "^3.6.0",
-    "@shikijs/transformers": "^3.14.0",
-    "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.15.1",
+    "@shikijs/transformers": "^3.15.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.4",
     "hastscript": "^9.0.1",
-    "puppeteer": "^24.26.1",
-    "sharp": "^0.34.4",
-    "tailwindcss": "^4.1.16",
+    "puppeteer": "^24.29.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   }
 }
