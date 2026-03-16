@@ -12,13 +12,13 @@
     "generate-og-images": "node scripts/generate-all-og-images.js"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/sitemap": "^3.7.1",
     "@shikijs/transformers": "^4.0.2",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.18.0",
     "hastscript": "^9.0.1",
-    "puppeteer": "^24.38.0",
+    "puppeteer": "^24.39.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
