@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@shikijs/transformers": "^4.0.2",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.18.0",
+    "astro": "^6.0.4",
     "hastscript": "^9.0.1",
     "puppeteer": "^24.38.0",
     "sharp": "^0.34.5",
