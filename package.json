@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/sitemap": "^3.7.2",
     "@shikijs/transformers": "^4.0.2",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.1.1",
     "hastscript": "^9.0.1",
     "puppeteer": "^24.40.0",
     "sharp": "^0.34.5",
