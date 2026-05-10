@@ -15,7 +15,7 @@
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.2",
     "@shikijs/transformers": "^4.0.2",
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/postcss": "^4.3.0",
     "astro": "^6.3.1",
     "hastscript": "^9.0.1",
     "puppeteer": "^24.43.0",

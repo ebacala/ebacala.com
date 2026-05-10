@@ -5,7 +5,7 @@ import { h } from "hastscript";
 
 import { transformerNotationDiff } from "@shikijs/transformers";
 
-import tailwindcss from "@tailwindcss/vite";
+// import tailwindcss from "@tailwindcss/vite";
 
 /**
  * This transformer is used to extract the meta information from the markdown file.
@@ -66,7 +66,7 @@ const transformerAddTitleToCodeBlocksHeaders = () => ({
         {
           class: "pre-title",
         },
-        this.meta.title
+        this.meta.title,
       );
 
       preHeaderDiv.children.push(titleDiv);
@@ -94,7 +94,7 @@ const transformerCopyButton = () => ({
               setTimeout(() => this.textContent = 'Copy', 1000)
             `,
         },
-        "Copy"
+        "Copy",
       );
 
       preHeaderDiv.children.push(copyCodeButton);
@@ -108,7 +108,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      customPages: ["https://ebacala.com/tools/minimalist-wallpapers-generator/"],
+      customPages: [
+        "https://ebacala.com/tools/minimalist-wallpapers-generator/",
+      ],
     }),
   ],
 
@@ -133,6 +135,6 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [], //tailwindcss()
   },
 });
