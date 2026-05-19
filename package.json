@@ -18,7 +18,7 @@
     "@tailwindcss/postcss": "^4.3.0",
     "astro": "^6.3.5",
     "hastscript": "^9.0.1",
-    "puppeteer": "^24.43.1",
+    "puppeteer": "^25.0.4",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3"
