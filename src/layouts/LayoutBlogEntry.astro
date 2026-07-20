@@ -90,8 +90,12 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } =
   </body>
 </html>
 
-<style>
+<style is:global>
   @reference "../assets/css/main.css";
+
+  /* is:global: these selectors target slotted markdown content, which never
+     gets Astro's scope attribute, so a scoped style here silently fails to
+     match in production builds (dev happens to work by accident). */
 
   article {
     counter-reset: section sub-section sub-sub-section;
