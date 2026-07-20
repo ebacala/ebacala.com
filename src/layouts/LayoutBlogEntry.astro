@@ -15,7 +15,8 @@ interface Props {
   ogImage?: ImageMetadata;
 }
 
-const { url, title, description, publishedDate, author, editedDate, ogImage } = Astro.props;
+const { url, title, description, publishedDate, author, editedDate, ogImage } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -42,7 +43,10 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={ogImage ? ogImage.src : ogImageDefault.src} />
+    <meta
+      property="og:image"
+      content={ogImage ? ogImage.src : ogImageDefault.src}
+    />
     <meta property="og:type" content="article" />
 
     <meta name="twitter:title" content={title} />
@@ -53,18 +57,30 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
     <ClientRouter />
   </head>
 
-  <body class="max-w-[600px] w-[90%] mx-auto flex flex-col justify-start items-center gap-10">
+  <body
+    class="max-w-[600px] w-[90%] mx-auto flex flex-col justify-start items-center gap-10"
+  >
     <Navbar />
 
     <section class="w-full bg-white p-4 flex flex-col gap-4">
       <h1 transition:name={`post-${title}`}>{title}</h1>
 
       <div class="flex flex-col gap-1">
-        <span class="font-light text-neutral-500">Published {publishedDate}.</span>
-        {editedDate && <span class="font-light text-neutral-500">Last edited {editedDate}.</span>}
+        <span class="font-light text-neutral-500"
+          >Published {publishedDate}.</span
+        >
+        {
+          editedDate && (
+            <span class="font-light text-neutral-500">
+              Last edited {editedDate}.
+            </span>
+          )
+        }
       </div>
 
-      <article class="flex flex-col items-start justify-center gap-4 text-justify indent-4">
+      <article
+        class="flex flex-col items-start justify-center gap-4 text-justify indent-4"
+      >
         <slot />
         <p class="w-full text-right">{author}</p>
       </article>
@@ -120,7 +136,7 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
           @apply bg-green-800;
 
           &:before {
-            @apply absolute left-[-0.75rem] text-green-400;
+            @apply absolute left-3 text-green-400;
             content: "+";
           }
         }
@@ -129,7 +145,7 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
           @apply bg-red-800;
 
           &:before {
-            @apply absolute left-[-0.75rem] text-red-400;
+            @apply absolute left-3 text-red-400;
             content: "-";
           }
         }
@@ -159,7 +175,8 @@ const { url, title, description, publishedDate, author, editedDate, ogImage } = 
       counter-increment: sub-sub-section;
 
       &:before {
-        content: counter(section) "." counter(sub-section) "." counter(sub-sub-section) ". ";
+        content: counter(section) "." counter(sub-section) "."
+          counter(sub-sub-section) ". ";
       }
     }
   }
